@@ -9,13 +9,19 @@ public class MobileInput : IInput
 
     private CompositeDisposable _disposable = new CompositeDisposable();
 
+    private Joystick _joystick;
+
+    [Inject]
+    public void Construct(PlayerHUD playerHud)
+    {
+        _joystick = playerHud.Joystick;
+    }
+
     public MobileInput()
     {
-        Debug.Log("I Created Mobile bitch!");
-
         Observable.EveryUpdate().Subscribe(_ =>
         {
-            MoveInputDrag?.Invoke(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+            MoveInputDrag?.Invoke(new Vector2(_joystick.Horizontal, _joystick.Vertical));
         }).AddTo(_disposable);
     }
 
