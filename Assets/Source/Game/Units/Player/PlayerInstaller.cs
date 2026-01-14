@@ -12,7 +12,7 @@ public class PlayerInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<IInput>().To<MobileInput>().AsSingle();
+        Container.Bind<IPlayerInput>().To<MobilePlayerInput>().AsSingle();
         Container.Bind<PlayerConfig>().FromInstance(_config);
 
         Player player =

@@ -1,0 +1,31 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UniRx;
+using UnityEngine;
+
+public class PlayerAnimator : UnitAnimator, IMoveUnitAnimatorInput, IDisposable
+{
+    private IPlayerInput _playerInput;
+
+    public PlayerAnimator(Animator animator, IPlayerInput playerInput, CompositeDisposable disposable) : base(animator)
+    {
+        MoveUnitAnimatorHandler unitAnimatorHandler = new MoveUnitAnimatorHandler(this, this, disposable);
+
+        _playerInput = playerInput;
+        _playerInput.MoveInputDrag += OnMoveInputDragged;
+    }
+
+    private void OnMoveInputDragged(Vector2 value)
+    {
+        Moving.Value = value.sqrMagnitude > 0;
+    }
+
+    public ReactiveProperty<bool> Moving { get; set; } = new ReactiveProperty<bool>();
+    public string MovingBoolName { get; set; } = "IsMoving";
+
+    public void Dispose()
+    {
+        _playerInput.MoveInputDrag -= OnMoveInputDragged;
+    }
+}

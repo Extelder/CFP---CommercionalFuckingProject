@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class UnitMovementHandler : IDisposable
 {
-    private IInput _input;
+    private IPlayerInput _playerInput;
     private IRigidbodyMovable _rigidbodyMovable;
 
-    public UnitMovementHandler(IInput input, IRigidbodyMovable rigidbodyMovable)
+    public UnitMovementHandler(IPlayerInput playerInput, IRigidbodyMovable rigidbodyMovable)
     {
-        _input = input;
+        _playerInput = playerInput;
         _rigidbodyMovable = rigidbodyMovable;
-        _input.MoveInputDrag += OnMoveInputReceived;
+        _playerInput.MoveInputDrag += OnMovePlayerInputReceived;
     }
 
-    public void OnMoveInputReceived(Vector2 value)
+    public void OnMovePlayerInputReceived(Vector2 value)
     {
         Debug.Log("IMovement Input Receiverd");
         _rigidbodyMovable.Rigidbody.velocity = new Vector3(value.x * _rigidbodyMovable.Speed,
@@ -24,6 +24,6 @@ public class UnitMovementHandler : IDisposable
 
     public virtual void Dispose()
     {
-        _input.MoveInputDrag -= OnMoveInputReceived;
+        _playerInput.MoveInputDrag -= OnMovePlayerInputReceived;
     }
 }

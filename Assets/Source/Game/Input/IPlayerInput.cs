@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public interface IInput : IDisposable
+public interface IPlayerInput : IDisposable
 {
     public event Action<Vector2> MoveInputDrag;
 }

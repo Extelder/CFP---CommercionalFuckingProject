@@ -3,7 +3,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-public class MobileInput : IInput
+public class MobilePlayerInput : IPlayerInput
 {
     public event Action<Vector2> MoveInputDrag;
 
@@ -17,7 +17,7 @@ public class MobileInput : IInput
         _joystick = playerHud.Joystick;
     }
 
-    public MobileInput()
+    public MobilePlayerInput()
     {
         Observable.EveryUpdate().Subscribe(_ =>
         {
