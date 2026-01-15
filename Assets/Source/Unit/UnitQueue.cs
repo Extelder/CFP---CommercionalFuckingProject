@@ -6,20 +6,20 @@ using Zenject;
 
 public abstract class UnitQueue : Queue
 {
-    [SerializeField] private float _spawnCooldown;
+    [SerializeField] protected float spawnCooldown;
     protected int maxQueueCapacity;
-    private UnitAbstractFactory _abstractFactory;
+    private UnitFactory _factory;
     private List<UnitProduct> _unitsInQueue = new List<UnitProduct>();
     private UnitProduct _currentFirstUnitProductInQueue;
 
     [Inject]
-    public void Construct(QueueConfig config, UnitAbstractFactory abstractFactory)
+    public void Construct(QueueConfig config, UnitFactory factory)
     {
         maxQueueCapacity = config.MaxQueueCapacity;
-        _abstractFactory = abstractFactory;
+        _factory = factory;
         for (int i = 0; i < maxQueueCapacity - 1; i++)
         {
-            _unitsInQueue.Add(abstractFactory.CreateProduct());
+            _unitsInQueue.Add(factory.CreateProduct());
         }
         _currentFirstUnitProductInQueue = _unitsInQueue[0];
     }
@@ -28,7 +28,7 @@ public abstract class UnitQueue : Queue
     {
         if (_unitsInQueue.Count < maxQueueCapacity - 1)
         {
-            _unitsInQueue.Add(_abstractFactory.CreateProduct());
+            _unitsInQueue.Add(_factory.CreateProduct());
         }
     }
 
@@ -37,13 +37,14 @@ public abstract class UnitQueue : Queue
         if (_unitsInQueue.Count > 0)
         {
             _unitsInQueue.Remove(_currentFirstUnitProductInQueue);
+            _currentFirstUnitProductInQueue = _unitsInQueue[0];
             StartCoroutine(WaitToSpawnNewUnit());
         }
     }
 
     private IEnumerator WaitToSpawnNewUnit()
     {
-        yield return new WaitForSeconds(_spawnCooldown);
+        yield return new WaitForSeconds(spawnCooldown);
         AddToQueue();
     }
 }

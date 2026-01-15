@@ -536,9 +536,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2ec96ae2a185d43b432ca299ecf2fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 0}
-  _spawnPoint: {fileID: 0}
-  _queue: {fileID: 0}
+  _config: {fileID: 11400000, guid: 028fee8126d652b4795fb52dfbc2e359, type: 2}
+  _spawnPoint: {fileID: 682380008}
+  _queue: {fileID: 8388164529044960562, guid: cb1ab6f6c350b2c4d880264d421496fe, type: 3}
+  _unitPrefab: {fileID: 1480139557273989666, guid: ee27fd2206d68b8408aedee64c69a03b,
+    type: 3}
 --- !u!1 &682380007
 GameObject:
   m_ObjectHideFlags: 0
