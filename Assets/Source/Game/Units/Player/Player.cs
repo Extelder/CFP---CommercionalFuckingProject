@@ -19,7 +19,6 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable
     public void Construct(PlayerConfig config, IUnitInput playerInput)
     {
         Speed = config.MoveSpeed;
-
         _disposable = new CompositeDisposable();
         _animator = new PlayerAnimator(Animator, playerInput, _disposable);
     }

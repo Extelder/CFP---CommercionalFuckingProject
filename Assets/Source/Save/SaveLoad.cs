@@ -5,6 +5,8 @@ using UnityEngine;
 [Serializable]
 public class SettingsConfigData
 {
+    [Header("Resources")] public int MoneyValue = 0;
+
     [Header("Sensitivity")] public float lookSensitivity = 0.1f;
 
     [Header("Volumes")] public float masterVolume = 0.8f;
