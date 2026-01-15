@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class PlayerAnimator : UnitAnimator, IMoveUnitAnimatorInput, IDisposable
 {
-    private IPlayerInput _playerInput;
+    private IUnitInput _playerInput;
 
-    public PlayerAnimator(Animator animator, IPlayerInput playerInput, CompositeDisposable disposable) : base(animator)
+    public PlayerAnimator(Animator animator, IUnitInput playerInput, CompositeDisposable disposable) : base(animator)
     {
         MoveUnitAnimatorHandler unitAnimatorHandler = new MoveUnitAnimatorHandler(this, this, disposable);
 

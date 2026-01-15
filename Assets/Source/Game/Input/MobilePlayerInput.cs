@@ -3,9 +3,10 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-public class MobilePlayerInput : IPlayerInput
+public class MobilePlayerInput : IUnitInput
 {
     public event Action<Vector2> MoveInputDrag;
+    public event Action<Vector2> RotateInputDrag;
 
     private CompositeDisposable _disposable = new CompositeDisposable();
 
@@ -22,6 +23,7 @@ public class MobilePlayerInput : IPlayerInput
         Observable.EveryUpdate().Subscribe(_ =>
         {
             MoveInputDrag?.Invoke(new Vector2(_joystick.Horizontal, _joystick.Vertical));
+            RotateInputDrag?.Invoke(new Vector2(_joystick.Horizontal, _joystick.Vertical));
         }).AddTo(_disposable);
     }
 

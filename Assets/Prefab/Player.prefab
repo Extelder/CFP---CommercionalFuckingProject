@@ -76,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Rigidbody>k__BackingField: {fileID: 6600506049403222592}
   <Animator>k__BackingField: {fileID: 232014362972772946}
+  <Transform>k__BackingField: {fileID: 4305367399251493097}
 --- !u!136 &4622374250018743279
 CapsuleCollider:
   m_ObjectHideFlags: 0

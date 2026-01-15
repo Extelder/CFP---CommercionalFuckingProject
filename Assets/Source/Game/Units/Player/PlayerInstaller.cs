@@ -12,7 +12,7 @@ public class PlayerInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<IPlayerInput>().To<MobilePlayerInput>().AsSingle();
+        Container.Bind<IUnitInput>().To<MobilePlayerInput>().AsSingle();
         Container.Bind<PlayerConfig>().FromInstance(_config);
 
         Player player =
@@ -20,6 +20,7 @@ public class PlayerInstaller : MonoInstaller
 
         Container.BindInterfacesAndSelfTo<Player>().FromInstance(player).AsSingle();
 
-        Container.BindInterfacesAndSelfTo<UnitMovementHandler>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<PlayerUnitMovementHandler>().FromNew().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<PlayerUnitRotationHandler>().FromNew().AsSingle().NonLazy();
     }
 }

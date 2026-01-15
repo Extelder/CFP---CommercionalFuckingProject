@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-public class Player : MonoBehaviour, IRigidbodyMovable
+public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable
 {
     public float Speed { get; set; }
     [field: SerializeField] public Rigidbody Rigidbody { get; set; }
@@ -16,9 +16,9 @@ public class Player : MonoBehaviour, IRigidbodyMovable
     private PlayerAnimator _animator;
 
     [Inject]
-    public void Construct(PlayerConfig config, IPlayerInput playerInput)
+    public void Construct(PlayerConfig config, IUnitInput playerInput)
     {
-        Speed = config.Speed;
+        Speed = config.MoveSpeed;
 
         _disposable = new CompositeDisposable();
         _animator = new PlayerAnimator(Animator, playerInput, _disposable);
@@ -29,4 +29,6 @@ public class Player : MonoBehaviour, IRigidbodyMovable
         _disposable.Clear();
         _animator.Dispose();
     }
+
+    [field: SerializeField] public Transform Transform { get; set; }
 }
