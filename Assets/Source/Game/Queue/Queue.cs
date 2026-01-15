@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Queue : MonoBehaviour
 {
-    public abstract void AddToQueue();
+    public abstract void AddToQueue(Vector3 position);
 
     public abstract void SubstractToQueue();
 }

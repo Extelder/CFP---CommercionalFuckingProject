@@ -6,4 +6,5 @@ using UnityEngine;
 public class QueueConfig : ScriptableObject
 {
     [field: SerializeField] public int MaxQueueCapacity { get; private set; }
+    [field: SerializeField] public float SpawnCooldown { get; private set; }
 }

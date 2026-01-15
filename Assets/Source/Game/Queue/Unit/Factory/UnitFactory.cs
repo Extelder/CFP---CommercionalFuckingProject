@@ -7,19 +7,18 @@ using Zenject;
 public class UnitFactory : AbstractFactory<UnitProduct>
 {
     [field: SerializeField] public override UnitProduct SpawnProduct { get; set; }
-    private readonly DiContainer _container;
-    private readonly GameObject _prefab;
-    private readonly Transform _spawnPoint;
-    
-    public UnitFactory(DiContainer container, GameObject prefab, Transform spawnPoint)
+    private DiContainer _container;
+    private GameObject _prefab;
+
+    public UnitFactory(DiContainer container, GameObject prefab)
     {
         _container = container;
         _prefab = prefab;
-        _spawnPoint = spawnPoint;
     }
-    
-    public override UnitProduct CreateProduct()
+
+    public override UnitProduct CreateProduct(Vector3 spawnPosition)
     {
-        return _container.InstantiatePrefabForComponent<UnitProduct>(_prefab, _spawnPoint);
+        return _container.InstantiatePrefabForComponent<UnitProduct>(_prefab,
+            spawnPosition, Quaternion.identity, null);
     }
 }

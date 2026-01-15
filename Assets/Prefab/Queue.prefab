@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4719d3eb81d8f543b03195d831bbb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCooldown: 5
+  _defaultSpawnPoint: {fileID: 3622461921866948798}
+  _offset: 1

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: QueueConfig
   m_EditorClassIdentifier: 
   <MaxQueueCapacity>k__BackingField: 10
+  <SpawnCooldown>k__BackingField: 0.5
