@@ -7,7 +7,6 @@ public class ProductParticleVisual : MonoBehaviour, IParticlePlayable
 {
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private AbstactProduct _product;
-    private ParticleHandler _particleHandler;
     private void OnEnable()
     {
         _product.Initialized += OnInitialized;
@@ -16,7 +15,6 @@ public class ProductParticleVisual : MonoBehaviour, IParticlePlayable
     private void OnInitialized()
     {
         ParticleHandler handler = new ParticleHandler(this, this);
-        _particleHandler = handler;
     }
 
     public void PlayUnitParticle()
@@ -27,7 +25,6 @@ public class ProductParticleVisual : MonoBehaviour, IParticlePlayable
     private void OnDisable()
     {
         _product.Initialized -= OnInitialized;
-        _particleHandler.Dispose();
     }
 
     public event Action ParticlePlay;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWallet : Wallet
 {
-    public PlayerWallet(int minValue, uint maxValue, int startValue) : base(minValue, maxValue, startValue)
+    public PlayerWallet(int minValue, int maxValue, int startValue) : base(minValue, maxValue, startValue)
     {
     }
 }

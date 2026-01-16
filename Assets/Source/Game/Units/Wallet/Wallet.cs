@@ -12,7 +12,7 @@ public class Wallet
 
     public event Action<int> ValueChanged;
 
-    public Wallet(int minValue, uint maxValue, int startValue)
+    public Wallet(int minValue, int maxValue, int startValue)
     {
         if (minValue > maxValue)
         {
@@ -21,8 +21,15 @@ public class Wallet
             return;
         }
 
+        if (maxValue < minValue)
+        {
+            Debug.LogError(this + "Wallet maxValue < minValue");
+            Debug.Break();
+            return;    
+        }
+
         this.minValue = minValue;
-        this.maxValue = (int) maxValue;
+        this.maxValue = maxValue;
 
 
         Add(startValue);
