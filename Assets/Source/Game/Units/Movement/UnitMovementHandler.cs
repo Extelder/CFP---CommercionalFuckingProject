@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class UnitMovementHandler : IDisposable
 {
-    private IUnitInput _playerInput;
+    private IUnitInput _unitInput;
 
 
     public UnitMovementHandler(IUnitInput unitInput)
     {
-        _playerInput = unitInput;
-        _playerInput.MoveInputDrag += OnMovePlayerInputReceived;
+        _unitInput = unitInput;
+        _unitInput.MoveInputDrag += OnMoveUnitInputReceived;
     }
 
-    public virtual void OnMovePlayerInputReceived(Vector2 value)
+    public virtual void OnMoveUnitInputReceived(Vector2 value)
     {
     }
 
     public virtual void Dispose()
     {
-        _playerInput.MoveInputDrag -= OnMovePlayerInputReceived;
+        _unitInput.MoveInputDrag -= OnMoveUnitInputReceived;
     }
 }
