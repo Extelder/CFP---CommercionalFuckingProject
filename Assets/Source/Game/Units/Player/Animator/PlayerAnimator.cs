@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class PlayerAnimator : UnitAnimator, IMoveUnitAnimatorInput, IDisposable
+public class PlayerAnimator : UnitAnimator, IMoveUnitAnimatorInput, IDisposable, IUnitCutDownAnimatorInput
 {
     private IUnitInput _playerInput;
 
@@ -23,6 +23,7 @@ public class PlayerAnimator : UnitAnimator, IMoveUnitAnimatorInput, IDisposable
 
     public ReactiveProperty<bool> Moving { get; set; } = new ReactiveProperty<bool>();
     public string MovingBoolName { get; set; } = "IsMoving";
+    public string CuttingDownBoolName { get; set; } = "IsCuttingDown";
 
     public void Dispose()
     {

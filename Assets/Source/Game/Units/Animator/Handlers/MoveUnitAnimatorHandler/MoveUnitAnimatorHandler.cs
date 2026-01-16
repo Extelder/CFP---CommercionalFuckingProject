@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class MoveUnitAnimatorHandler
 {
-    public MoveUnitAnimatorHandler(IMoveUnitAnimatorInput input, UnitAnimator animator, CompositeDisposable disposable)
-    {
-        input.Moving.Subscribe(_ => { animator.Animator.SetBool(input.MovingBoolName, _); }).AddTo(disposable);
-    }
+        public MoveUnitAnimatorHandler(IMoveUnitAnimatorInput input, UnitAnimator animator, CompositeDisposable disposable)
+        {
+            input.Moving.Subscribe(_ => { animator.Animator.SetBool(input.MovingBoolName, _); }).AddTo(disposable);
+        }
 }

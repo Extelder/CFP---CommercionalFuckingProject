@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable
+public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable, IUnitActionProvider
 {
     public float Speed { get; set; }
     [field: SerializeField] public Rigidbody Rigidbody { get; set; }
@@ -14,6 +14,9 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable
     private CompositeDisposable _disposable = new CompositeDisposable();
 
     private PlayerAnimator _animator;
+
+    private PlayerUnitCutDownHandler _cutDownHandler;
+    private PlayerUnitCutDownAnimatorHandler _playerUnitCutDownAnimatorHandler;
 
     [Inject]
     public void Construct(PlayerConfig config, IUnitInput playerInput)
@@ -30,4 +33,13 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable
     }
 
     [field: SerializeField] public Transform Transform { get; set; }
+
+    public void Provide(IPlayerUnitCutDownInput playerUnitCutDownInput)
+    {
+        _cutDownHandler =
+            new PlayerUnitCutDownHandler(playerUnitCutDownInput, new CompositeDisposable());
+
+        _playerUnitCutDownAnimatorHandler =
+            new PlayerUnitCutDownAnimatorHandler(playerUnitCutDownInput, _animator, _animator);
+    }
 }
