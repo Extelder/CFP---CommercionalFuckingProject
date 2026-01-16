@@ -10,6 +10,7 @@ public abstract class UnitQueue : Queue
 {
     [SerializeField] private Transform _defaultSpawnPoint;
     [SerializeField] private float _offset;
+    [SerializeField] private Transform _targetPointToMove;
     protected float spawnCooldown;
     protected int maxQueueCapacity;
     private UnitFactory _factory;
@@ -32,7 +33,7 @@ public abstract class UnitQueue : Queue
 
     public override void AddToQueue(Vector3 position)
     {
-        if (_unitsInQueue.Count < maxQueueCapacity - 1)
+        if (_unitsInQueue.Count < maxQueueCapacity)
         {
             _unitsInQueue.Add(_factory.CreateProduct(position));
         }
@@ -43,7 +44,7 @@ public abstract class UnitQueue : Queue
         if (_unitsInQueue.Count > 0)
         {
             _unitsInQueue.Remove(_currentFirstUnitProductInQueue);
-            _currentFirstUnitProductInQueue = _unitsInQueue[0];
+            SetFirstUnitAndMove();
             StartCoroutine(WaitToSpawnNewUnit());
         }
     }
@@ -54,13 +55,20 @@ public abstract class UnitQueue : Queue
         {
             yield return new WaitForSeconds(spawnCooldown);
             
-            AddToQueue(_defaultSpawnPoint.position + new Vector3(0, 0, _offset * _currentUnitCount));
-            _currentUnitCount++;
+            AddToQueue(_defaultSpawnPoint.position + new Vector3(_offset * _currentUnitCount, 0, 0));
             if (_currentUnitCount > maxQueueCapacity)
             {
-                _currentFirstUnitProductInQueue = _unitsInQueue[0];
+                SetFirstUnitAndMove();
                 break;
             }
+            _currentUnitCount++;
         }
+    }
+
+    private void SetFirstUnitAndMove()
+    {
+        Debug.Log("SET FIRST");
+        _currentFirstUnitProductInQueue = _unitsInQueue[maxQueueCapacity - 1];
+        _currentFirstUnitProductInQueue.Move(_targetPointToMove);
     }
 }

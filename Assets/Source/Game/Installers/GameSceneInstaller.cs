@@ -5,14 +5,16 @@ using Zenject;
 
 public class GameSceneInstaller : MonoInstaller
 {
-    [SerializeField] private QueueConfig _config;
+    [SerializeField] private QueueConfig _queueConfig;
+    [SerializeField] private UnitConfig _unitConfig;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Queue _queue;
     [SerializeField] private GameObject _unitPrefab;
 
     public override void InstallBindings()
     {
-        Container.Bind<QueueConfig>().FromInstance(_config);
+        Container.Bind<QueueConfig>().FromInstance(_queueConfig);
+        Container.Bind<UnitConfig>().FromInstance(_unitConfig);
         Container.Bind<UnitFactory>()
             .AsSingle()
             .WithArguments(_unitPrefab);
