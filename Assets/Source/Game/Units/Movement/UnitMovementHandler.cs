@@ -6,18 +6,16 @@ using UnityEngine;
 public class UnitMovementHandler : IDisposable
 {
     private IUnitInput _playerInput;
-    protected IRigidbodyMovable rigidbodyMovable;
 
-    public UnitMovementHandler(IUnitInput unitInput, IRigidbodyMovable rigidbodyMovable)
+
+    public UnitMovementHandler(IUnitInput unitInput)
     {
         _playerInput = unitInput;
-        this.rigidbodyMovable = rigidbodyMovable;
         _playerInput.MoveInputDrag += OnMovePlayerInputReceived;
     }
 
     public virtual void OnMovePlayerInputReceived(Vector2 value)
     {
-    
     }
 
     public virtual void Dispose()

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerUnitMovementHandler : UnitMovementHandler
 {
-    public PlayerUnitMovementHandler(IUnitInput unitInput, IRigidbodyMovable rigidbodyMovable) : base(unitInput,
-        rigidbodyMovable)
+    protected IRigidbodyMovable rigidbodyMovable;
+
+    public PlayerUnitMovementHandler(IUnitInput unitInput, IRigidbodyMovable rigidbodyMovable) : base(unitInput)
     {
+        this.rigidbodyMovable = rigidbodyMovable;
     }
 
     public override void OnMovePlayerInputReceived(Vector2 value)
