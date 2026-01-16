@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87fe82540c069894a992da734527d707, type: 3}
   m_Name: QueueConfig
   m_EditorClassIdentifier: 
-  <MaxQueueCapacity>k__BackingField: 10
+  <MaxQueueCapacity>k__BackingField: 6
   <SpawnCooldown>k__BackingField: 0.5
