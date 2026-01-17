@@ -8,14 +8,13 @@ public class CustomerUnitInput : IUnitInput
 {
     private CompositeDisposable _disposable = new CompositeDisposable();
 
-    public CustomerUnitInput(Transform targetPoint)
+    public CustomerUnitInput(Vector3 targetPoint)
     {
         Observable.EveryUpdate().Subscribe(_ =>
         {
-            Debug.Log("АААЙ");
             if (Input.GetKeyDown(KeyCode.I))
             {
-                MoveInputDrag?.Invoke(targetPoint.position);
+                MoveInputDrag?.Invoke(targetPoint);
             }
         }).AddTo(_disposable);
     }

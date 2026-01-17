@@ -19,7 +19,6 @@ public class CustomerUnitMovementHandler : UnitMovementHandler
     {
         Observable.Interval(TimeSpan.FromSeconds(navMeshMovable.MoveRate)).Subscribe(_ =>
         {
-            Debug.Log("navmesh");
             if (navMeshMovable.NavMeshAgent.remainingDistance >= navMeshMovable.DistanceToStop)
             {
                 _disposable.Clear();

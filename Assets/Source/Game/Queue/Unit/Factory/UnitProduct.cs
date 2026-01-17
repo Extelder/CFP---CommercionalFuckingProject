@@ -14,8 +14,6 @@ public class UnitProduct : AbstactProduct, INavMeshMovable, IUnitTransformable
     [field: SerializeField] public Transform Transform { get; set; }
  
     private Transform _targetPoint;
-    private CustomerUnitInput _input;
-    private CustomerUnitMovementHandler _movementHandler;
     
     [Inject]
     public void Construct(UnitConfig config)
@@ -28,13 +26,20 @@ public class UnitProduct : AbstactProduct, INavMeshMovable, IUnitTransformable
         Initialized?.Invoke();
     }
 
-    public void Move(Transform targetPoint)
+    public void Move(float offset)
     {
-        _targetPoint = targetPoint;
-        CustomerUnitInput input = new CustomerUnitInput(_targetPoint);
-        _input = input;
-        CustomerUnitMovementHandler movementHandler = new CustomerUnitMovementHandler(_input, this);
-        _movementHandler = movementHandler;
+        CreateNewExamples(Transform.position + new Vector3(offset, 0, 0));
+    }
+
+    public void Move(Vector3 targetPoint)
+    {
+        CreateNewExamples(targetPoint);
+    }
+
+    private void CreateNewExamples(Vector3 targetPoint)
+    {
+        CustomerUnitInput input = new CustomerUnitInput(targetPoint);
+        CustomerUnitMovementHandler movementHandler = new CustomerUnitMovementHandler(input, this);
     }
 
     public override event Action Initialized;

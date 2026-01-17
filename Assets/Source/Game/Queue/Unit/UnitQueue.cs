@@ -6,17 +6,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
-public abstract class UnitQueue : Queue
+public class UnitQueue : Queue
 {
     [SerializeField] private Transform _defaultSpawnPoint;
     [SerializeField] private float _offset;
-    [SerializeField] private Transform _targetPointToMove;
+    [SerializeField] private Transform _targetPoint;
     protected float spawnCooldown;
     protected int maxQueueCapacity;
     private UnitFactory _factory;
     private int _currentUnitCount;
     private List<UnitProduct> _unitsInQueue = new List<UnitProduct>();
-    private UnitProduct _currentFirstUnitProductInQueue;
 
     [Inject]
     public void Construct(QueueConfig config, UnitFactory factory)
@@ -43,8 +42,9 @@ public abstract class UnitQueue : Queue
     {
         if (_unitsInQueue.Count > 0)
         {
-            _unitsInQueue.Remove(_currentFirstUnitProductInQueue);
-            SetFirstUnitAndMove();
+            UnitProduct currentFirstUnitInQueue = _unitsInQueue[maxQueueCapacity - 1];
+            currentFirstUnitInQueue.Move(_targetPoint.position);
+            _unitsInQueue.Remove(currentFirstUnitInQueue);
             StartCoroutine(WaitToSpawnNewUnit());
         }
     }
@@ -54,21 +54,24 @@ public abstract class UnitQueue : Queue
         while (true)
         {
             yield return new WaitForSeconds(spawnCooldown);
-            
+
             AddToQueue(_defaultSpawnPoint.position + new Vector3(_offset * _currentUnitCount, 0, 0));
             if (_currentUnitCount > maxQueueCapacity)
             {
-                SetFirstUnitAndMove();
+                MoveUnitsInQueue();
+                _currentUnitCount = 0;
                 break;
             }
+
             _currentUnitCount++;
         }
     }
 
-    private void SetFirstUnitAndMove()
+    private void MoveUnitsInQueue()
     {
-        Debug.Log("SET FIRST");
-        _currentFirstUnitProductInQueue = _unitsInQueue[maxQueueCapacity - 1];
-        _currentFirstUnitProductInQueue.Move(_targetPointToMove);
+        for (int i = 0; i < _unitsInQueue.Count; i++)
+        {
+            _unitsInQueue[i].Move(_offset);
+        }
     }
 }

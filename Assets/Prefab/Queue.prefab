@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3622461921866948798}
-  - component: {fileID: 92370873632586088}
+  - component: {fileID: 5240549784507187362}
   m_Layer: 0
   m_Name: Queue
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 3705909911753435782}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &92370873632586088
+--- !u!114 &5240549784507187362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5358153914035625611}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4719d3eb81d8f543b03195d831bbb16, type: 3}
+  m_Script: {fileID: 11500000, guid: 205e310682e23b341bd7248c6f98117f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultSpawnPoint: {fileID: 3622461921866948798}
   _offset: 1
-  _targetPointToMove: {fileID: 3705909911753435782}
+  _targetPoint: {fileID: 3705909911753435782}
 --- !u!1 &8873324515716249927
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ Transform:
   m_GameObject: {fileID: 8873324515716249927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.25, y: 0, z: 0}
+  m_LocalPosition: {x: -6.5, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
