@@ -14,8 +14,8 @@ public class UnitQueue : Queue
     protected float spawnCooldown;
     protected int maxQueueCapacity;
     private UnitFactory _factory;
-    private int _currentUnitCount;
-    private List<UnitProduct> _unitsInQueue = new List<UnitProduct>();
+    [SerializeField] private UnitProduct _currentFirstUnitInQueue;
+    [SerializeField] private List<UnitProduct> _unitsInQueue = new List<UnitProduct>();
 
     [Inject]
     public void Construct(QueueConfig config, UnitFactory factory)
@@ -25,9 +25,15 @@ public class UnitQueue : Queue
         _factory = factory;
     }
 
+    private void OnUnitBought()
+    {
+        SubstractToQueue();
+    }
+
     private void Start()
     {
-        StartCoroutine(WaitToSpawnNewUnit());
+        StartCoroutine(FillQueueOnStart());
+        _defaultSpawnPoint.localPosition = new Vector3(-_offset * maxQueueCapacity, 0, 0);
     }
 
     public override void AddToQueue(Vector3 position)
@@ -42,28 +48,36 @@ public class UnitQueue : Queue
     {
         if (_unitsInQueue.Count > 0)
         {
-            UnitProduct currentFirstUnitInQueue = _unitsInQueue[maxQueueCapacity - 1];
-            currentFirstUnitInQueue.Move(_targetPoint.position);
-            _unitsInQueue.Remove(currentFirstUnitInQueue);
-            StartCoroutine(WaitToSpawnNewUnit());
+            _currentFirstUnitInQueue.Move(_targetPoint.position);
+            _unitsInQueue.Remove(_currentFirstUnitInQueue);
+            StartCoroutine(AddToQueueSeparately());
         }
     }
 
-    private IEnumerator WaitToSpawnNewUnit()
+    private IEnumerator AddToQueueSeparately()
     {
+        _currentFirstUnitInQueue = _unitsInQueue[0];
+        MoveUnitsInQueue();
+        _currentFirstUnitInQueue.Bought += OnUnitBought;
+        yield return new WaitForSeconds(spawnCooldown);
+        AddToQueue(_defaultSpawnPoint.position);
+    }
+
+    private IEnumerator FillQueueOnStart()
+    {
+        int currentUnitCount = 0;
         while (true)
         {
             yield return new WaitForSeconds(spawnCooldown);
-
-            AddToQueue(_defaultSpawnPoint.position + new Vector3(_offset * _currentUnitCount, 0, 0));
-            if (_currentUnitCount > maxQueueCapacity)
+            AddToQueue(transform.position + new Vector3(-_offset * currentUnitCount, 0, 0));
+            if (currentUnitCount > maxQueueCapacity - 1)
             {
-                MoveUnitsInQueue();
-                _currentUnitCount = 0;
+                _currentFirstUnitInQueue = _unitsInQueue[0];
+                _currentFirstUnitInQueue.Bought += OnUnitBought;
                 break;
             }
 
-            _currentUnitCount++;
+            currentUnitCount++;
         }
     }
 
@@ -73,5 +87,10 @@ public class UnitQueue : Queue
         {
             _unitsInQueue[i].Move(_offset);
         }
+    }
+
+    private void OnDisable()
+    {
+        _currentFirstUnitInQueue.Bought -= OnUnitBought;
     }
 }

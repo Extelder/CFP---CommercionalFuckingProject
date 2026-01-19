@@ -15,8 +15,9 @@ public class CustomerUnitMovementHandler : UnitMovementHandler
         this.navMeshMovable.NavMeshAgent.speed = this.navMeshMovable.Speed;
     }
 
-    public override void OnMoveUnitInputReceived(Vector2 value)
+    public override void OnMoveUnitInputReceived(Vector3 value)
     {
+        Debug.Log("MOVE");
         Observable.Interval(TimeSpan.FromSeconds(navMeshMovable.MoveRate)).Subscribe(_ =>
         {
             if (navMeshMovable.NavMeshAgent.remainingDistance >= navMeshMovable.DistanceToStop)
@@ -26,5 +27,11 @@ public class CustomerUnitMovementHandler : UnitMovementHandler
             }
             navMeshMovable.NavMeshAgent.SetDestination(value);
         }).AddTo(_disposable);
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+        _disposable.Clear();
     }
 }

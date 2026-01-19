@@ -21,5 +21,6 @@ public class GameSceneInstaller : MonoInstaller
         Queue queue =
             Container.InstantiatePrefabForComponent<Queue>(_queue, _spawnPoint.position, Quaternion.identity, null);
         Container.BindInterfacesAndSelfTo<Queue>().FromInstance(queue).AsSingle();
+        Container.BindInterfacesAndSelfTo<Shop>().FromNew().AsSingle().NonLazy();
     }
 }

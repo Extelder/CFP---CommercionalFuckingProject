@@ -6,4 +6,5 @@ using UnityEngine;
 public class UnitConfig : ScriptableObject
 {
     [field: SerializeField] public float Speed { get; private set; }
+    [field: SerializeField] public int NeededRecources { get; private set; }
 }

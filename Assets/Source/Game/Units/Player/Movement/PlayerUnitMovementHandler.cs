@@ -11,9 +11,9 @@ public class PlayerUnitMovementHandler : UnitMovementHandler
         this.rigidbodyMovable = rigidbodyMovable;
     }
 
-    public override void OnMoveUnitInputReceived(Vector2 value)
+    public override void OnMoveUnitInputReceived(Vector3 value)
     {
         rigidbodyMovable.Rigidbody.velocity = new Vector3(value.x * rigidbodyMovable.Speed,
-            rigidbodyMovable.Rigidbody.velocity.y, value.y * rigidbodyMovable.Speed);
+            rigidbodyMovable.Rigidbody.velocity.y, value.z * rigidbodyMovable.Speed);
     }
 }

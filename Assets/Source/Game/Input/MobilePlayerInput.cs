@@ -5,7 +5,7 @@ using Zenject;
 
 public class MobilePlayerInput : IUnitInput
 {
-    public event Action<Vector2> MoveInputDrag;
+    public event Action<Vector3> MoveInputDrag;
     public event Action<Vector2> RotateInputDrag;
 
     private CompositeDisposable _disposable = new CompositeDisposable();
@@ -22,7 +22,7 @@ public class MobilePlayerInput : IUnitInput
     {
         Observable.EveryUpdate().Subscribe(_ =>
         {
-            MoveInputDrag?.Invoke(new Vector2(_joystick.Horizontal, _joystick.Vertical));
+            MoveInputDrag?.Invoke(new Vector3(_joystick.Horizontal, 0,_joystick.Vertical));
             RotateInputDrag?.Invoke(new Vector2(_joystick.Horizontal, _joystick.Vertical));
         }).AddTo(_disposable);
     }

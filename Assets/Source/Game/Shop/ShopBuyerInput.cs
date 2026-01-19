@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class CustomerUnitInput : IUnitInput
+public class ShopBuyerInput : IUnitInput
 {
     private CompositeDisposable _disposable = new CompositeDisposable();
-
-    public CustomerUnitInput(Vector3 targetPoint)
+    
+    public ShopBuyerInput(Vector3 targetPoint)
     {
         Observable.EveryUpdate().Subscribe(_ =>
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.O))
             {
                 MoveInputDrag?.Invoke(targetPoint);
             }
@@ -24,6 +24,6 @@ public class CustomerUnitInput : IUnitInput
         _disposable.Clear();
     }
 
-    public event Action<Vector2> MoveInputDrag;
+    public event Action<Vector3> MoveInputDrag;
     public event Action<Vector2> RotateInputDrag;
 }

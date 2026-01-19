@@ -14,7 +14,7 @@ public class UnitMovementHandler : IDisposable
         _unitInput.MoveInputDrag += OnMoveUnitInputReceived;
     }
 
-    public virtual void OnMoveUnitInputReceived(Vector2 value)
+    public virtual void OnMoveUnitInputReceived(Vector3 value)
     {
     }
 

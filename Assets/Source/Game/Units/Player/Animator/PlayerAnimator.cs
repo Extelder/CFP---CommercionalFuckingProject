@@ -16,7 +16,7 @@ public class PlayerAnimator : UnitAnimator, IMoveUnitAnimatorInput, IDisposable,
         _playerInput.MoveInputDrag += OnMoveInputDragged;
     }
 
-    private void OnMoveInputDragged(Vector2 value)
+    private void OnMoveInputDragged(Vector3 value)
     {
         Moving.Value = value.sqrMagnitude > 0;
     }
