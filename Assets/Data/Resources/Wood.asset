@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a69ee9601e8d9e43b4f09eb2a899916, type: 3}
+  m_Name: Wood
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Wood
+  <Prefab>k__BackingField: {fileID: 6693457098265802178, guid: 56a78b49b9c88bf4f8600c33472ee567,
+    type: 3}

@@ -8,6 +8,7 @@ public class PlayerUnitCutDownTrigger : MonoBehaviour, IPlayerUnitCutDownInput
     public event Action StartAction;
     public event Action StopAction;
     [field: SerializeField] public GameObject Tree { get; set; }
+    [field: SerializeField] public Resource Resource { get; set; }
 
     private void OnTriggerEnter(Collider other)
     {
