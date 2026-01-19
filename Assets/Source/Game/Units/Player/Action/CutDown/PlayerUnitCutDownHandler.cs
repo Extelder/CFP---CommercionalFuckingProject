@@ -13,9 +13,13 @@ public class PlayerUnitCutDownHandler : UnitActionHandler
 
     private CompositeDisposable _disposable;
 
-    public PlayerUnitCutDownHandler(IPlayerUnitCutDownInput unitActionInput, CompositeDisposable disposable) : base(
+    private ResourceContainer _resourceContainer;
+
+    public PlayerUnitCutDownHandler(IPlayerUnitCutDownInput unitActionInput, CompositeDisposable disposable,
+        ResourceContainer resourceContainer) : base(
         unitActionInput)
     {
+        _resourceContainer = resourceContainer;
         _cutDownInput = unitActionInput;
         _disposable = disposable;
     }
@@ -24,6 +28,7 @@ public class PlayerUnitCutDownHandler : UnitActionHandler
     {
         Observable.Interval(TimeSpan.FromSeconds(1.5f)).Subscribe(_ =>
         {
+            _resourceContainer.TryAdd(1, _cutDownInput.Resource);
             _shakeTween = _cutDownInput.Tree.transform.DOShakeScale(1, 1);
         }).AddTo(_disposable);
     }

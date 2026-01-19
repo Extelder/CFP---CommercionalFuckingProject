@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IPlayerUnitCutDownInput : IUnitActionInput
 {
     public GameObject Tree { get; set; }
+    public Resource Resource { get; set; }
 }

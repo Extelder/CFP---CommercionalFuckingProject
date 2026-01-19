@@ -268,6 +268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Tree>k__BackingField: {fileID: 881369045}
+  <Resource>k__BackingField: {fileID: 11400000, guid: c5ef1deca9511dc4bb13c083bd9882fe,
+    type: 2}
 --- !u!65 &205188548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -301,7 +303,8 @@ Transform:
   m_LocalPosition: {x: -0.928, y: -0.36461306, z: 1.387}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 881369046}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
@@ -928,14 +931,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881369045}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9050435, y: 0.08, z: 1.878}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.02295649, y: 0.44461304, z: 0.49100006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1633846219}
   - {fileID: 1702311612}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 205188549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1496309828
 GameObject:
@@ -1364,7 +1367,6 @@ SceneRoots:
   - {fileID: 1937206643}
   - {fileID: 682380008}
   - {fileID: 18125548}
-  - {fileID: 881369046}
   - {fileID: 205188549}
   - {fileID: 646929105}
   - {fileID: 2100781959}
