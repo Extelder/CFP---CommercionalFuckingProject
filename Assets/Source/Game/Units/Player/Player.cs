@@ -20,7 +20,6 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable, IUni
     private PlayerUnitCutDownHandler _cutDownHandler;
     private PlayerUnitCutDownAnimatorHandler _playerUnitCutDownAnimatorHandler;
 
-
     [Inject]
     public void Construct(PlayerConfig config, IUnitInput playerInput)
     {
@@ -42,6 +41,9 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable, IUni
 
     public void Provide(IPlayerUnitCutDownInput playerUnitCutDownInput)
     {
+        _cutDownHandler?.Dispose();
+        _playerUnitCutDownAnimatorHandler?.Dispose();
+
         _cutDownHandler =
             new PlayerUnitCutDownHandler(playerUnitCutDownInput, new CompositeDisposable(), _resourceContainer);
 
