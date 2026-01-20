@@ -24,9 +24,15 @@ public class ResourceContainerView : IDisposable
 
     private void OnValueChanged(int value)
     {
-        for (int i = 0; i < value; i++)
+        for (int i = 0; i < _resourceContainer.MaxValue; i++)
         {
-            SpawnedResources[i].SetActive(true);
+            if (value -1 >= i)
+            {
+                SpawnedResources[i].SetActive(true);
+                continue;
+            }
+
+            SpawnedResources[i].SetActive(false);
         }
     }
 

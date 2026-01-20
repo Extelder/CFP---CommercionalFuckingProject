@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5644114b7133043bdb4890e8f12ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resourceContainer:
+  <ResourceContainer>k__BackingField:
     <SpawnPoint>k__BackingField: {fileID: 3260552773234876940}
     <ResourcesType>k__BackingField: {fileID: 11400000, guid: c5ef1deca9511dc4bb13c083bd9882fe,
       type: 2}

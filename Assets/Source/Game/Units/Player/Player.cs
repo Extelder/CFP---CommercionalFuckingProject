@@ -7,7 +7,7 @@ using Zenject;
 
 public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable, IUnitActionProvider
 {
-    [SerializeField] private ResourceContainer _resourceContainer;
+    [field: SerializeField] public ResourceContainer ResourceContainer { get; private set; }
 
     public float Speed { get; set; }
     [field: SerializeField] public Rigidbody Rigidbody { get; set; }
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable, IUni
         _animator = new PlayerAnimator(Animator, playerInput, _disposable);
 
         ResourceContainerView containerView =
-            new ResourceContainerView(_resourceContainer, _resourceContainer.SpawnPoint);
+            new ResourceContainerView(ResourceContainer, ResourceContainer.SpawnPoint);
     }
 
     private void OnDisable()
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable, IUni
         _playerUnitCutDownAnimatorHandler?.Dispose();
 
         _cutDownHandler =
-            new PlayerUnitCutDownHandler(playerUnitCutDownInput, new CompositeDisposable(), _resourceContainer);
+            new PlayerUnitCutDownHandler(playerUnitCutDownInput, new CompositeDisposable(), ResourceContainer);
 
         _playerUnitCutDownAnimatorHandler =
             new PlayerUnitCutDownAnimatorHandler(playerUnitCutDownInput, _animator, _animator);
