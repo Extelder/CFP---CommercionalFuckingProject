@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class PlayerResourceTransferTrigger : MonoBehaviour
+public class PlayerResourceTransferTrigger : MonoBehaviour, IResourceContainerTransfer
 {
-    [SerializeField] private ResourceContainer _resourceContainer;
+    [field: SerializeField] public ResourceContainer ResourceContainer { get; set; }
 
     private ResourceTransfer _resourceTransfer;
     private ResourceContainerView _containerView;
@@ -17,10 +17,10 @@ public class PlayerResourceTransferTrigger : MonoBehaviour
     {
         if (other.TryGetComponent<Player>(out Player Player))
         {
-            _resourceTransfer = new ResourceTransfer(Player.ResourceContainer, _resourceContainer, 1f, _disposable);
+            _resourceTransfer = new ResourceTransfer(Player.ResourceContainer, ResourceContainer, 1f, _disposable);
 
             _containerView =
-                new ResourceContainerView(_resourceContainer, _resourceContainer.SpawnPoint);
+                new ResourceContainerView(ResourceContainer, ResourceContainer.SpawnPoint);
         }
     }
 
