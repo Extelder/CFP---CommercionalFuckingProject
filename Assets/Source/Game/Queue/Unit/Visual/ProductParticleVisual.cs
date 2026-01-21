@@ -6,7 +6,7 @@ using UnityEngine;
 public class ProductParticleVisual : MonoBehaviour, IParticlePlayable
 {
     [SerializeField] private ParticleSystem _particleSystem;
-    [SerializeField] private AbstactProduct _product;
+    [SerializeField] private AbstractProduct _product;
     private void OnEnable()
     {
         _product.Initialized += OnInitialized;

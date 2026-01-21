@@ -4,9 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
-public class UnitFactory : AbstractFactory<UnitProduct>
+public class UnitFactory : AbstractFactory<CustomerUnitProduct>
 {
-    [field: SerializeField] public override UnitProduct SpawnProduct { get; set; }
+    [field: SerializeField] public override CustomerUnitProduct SpawnProduct { get; set; }
     protected DiContainer container;
     protected GameObject prefab;
 
@@ -14,11 +14,12 @@ public class UnitFactory : AbstractFactory<UnitProduct>
     {
         this.container = container;
         this.prefab = prefab;
+        Debug.Log("DSDSDDW");
     }
 
-    public override UnitProduct CreateProduct(Vector3 spawnPosition)
+    public override CustomerUnitProduct CreateProduct(Vector3 spawnPosition)
     {
-        return container.InstantiatePrefabForComponent<UnitProduct>(prefab,
+        return container.InstantiatePrefabForComponent<CustomerUnitProduct>(prefab,
             spawnPosition, Quaternion.identity, null);
     }
 }

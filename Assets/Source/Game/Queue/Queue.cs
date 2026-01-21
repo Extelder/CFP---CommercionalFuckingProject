@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public abstract class Queue : MonoBehaviour
+public abstract class Queue<T> where T : AbstractProduct
 {
-    public abstract void AddToQueue(Vector3 position);
+    public abstract List<T> UnitsInQueue { get; set; }
+    public int Count => (UnitsInQueue.Count);
+    
+    public abstract void AddToQueue(T product);
 
-    public abstract void SubstractToQueue();
+    public abstract void SubstractToQueue(T product);
 }

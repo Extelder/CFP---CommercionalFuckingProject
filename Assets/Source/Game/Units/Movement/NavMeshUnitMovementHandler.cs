@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class CustomerUnitMovementHandler : UnitMovementHandler
+public class NavMeshUnitMovementHandler : UnitMovementHandler
 {
+    public event Action DestinationReached;
+    
     private CompositeDisposable _disposable = new CompositeDisposable();
     protected INavMeshMovable navMeshMovable;
     
-    public CustomerUnitMovementHandler(IUnitInput unitInput, INavMeshMovable navMeshMovable) : base(unitInput)
+    public NavMeshUnitMovementHandler(IUnitInput unitInput, INavMeshMovable navMeshMovable) : base(unitInput)
     {
         this.navMeshMovable = navMeshMovable;
         this.navMeshMovable.NavMeshAgent.speed = this.navMeshMovable.Speed;
@@ -17,11 +19,12 @@ public class CustomerUnitMovementHandler : UnitMovementHandler
 
     public override void OnMoveUnitInputReceived(Vector3 value)
     {
-        Debug.Log("MOVE");
         Observable.Interval(TimeSpan.FromSeconds(navMeshMovable.MoveRate)).Subscribe(_ =>
         {
             if (navMeshMovable.NavMeshAgent.remainingDistance >= navMeshMovable.DistanceToStop)
             {
+                Debug.Log("REACHED DEST");
+                DestinationReached?.Invoke();
                 _disposable.Clear();
                 return;
             }

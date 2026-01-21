@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1913385859418574604}
   - component: {fileID: 7383980918009586069}
-  - component: {fileID: 4016537309993249308}
+  - component: {fileID: 1537706458383627390}
   - component: {fileID: 7045506108158453723}
   - component: {fileID: 5131185992517531862}
   m_Layer: 0
@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 7360276569162202023}
-  _product: {fileID: 4016537309993249308}
---- !u!114 &4016537309993249308
+  _product: {fileID: 1537706458383627390}
+--- !u!114 &1537706458383627390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1480139557273989666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981106900f842784cb8def2e1805884d, type: 3}
+  m_Script: {fileID: 11500000, guid: 65bdbfef571fb8f468a07cfb60220994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <MoveRate>k__BackingField: 0.2

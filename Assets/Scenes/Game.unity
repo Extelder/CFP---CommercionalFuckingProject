@@ -609,8 +609,9 @@ MonoBehaviour:
   _queueConfig: {fileID: 11400000, guid: 028fee8126d652b4795fb52dfbc2e359, type: 2}
   _unitConfig: {fileID: 11400000, guid: 25cafab4a5daa244c8d34a29786abe1c, type: 2}
   _spawnPoint: {fileID: 2100781959}
-  _queue: {fileID: 5240549784507187362, guid: cb1ab6f6c350b2c4d880264d421496fe, type: 3}
   _unitPrefab: {fileID: 1480139557273989666, guid: ee27fd2206d68b8408aedee64c69a03b,
+    type: 3}
+  _queueViewPrefab: {fileID: 5358153914035625611, guid: cb1ab6f6c350b2c4d880264d421496fe,
     type: 3}
 --- !u!1 &559403133
 GameObject:

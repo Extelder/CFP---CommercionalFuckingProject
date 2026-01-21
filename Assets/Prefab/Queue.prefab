@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3622461921866948798}
-  - component: {fileID: 5240549784507187362}
+  - component: {fileID: 2771580248071060569}
   m_Layer: 0
   m_Name: Queue
   m_TagString: Untagged
@@ -65,7 +65,7 @@ Transform:
   - {fileID: 8542735673113716557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5240549784507187362
+--- !u!114 &2771580248071060569
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,14 +74,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5358153914035625611}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 205e310682e23b341bd7248c6f98117f, type: 3}
+  m_Script: {fileID: 11500000, guid: ff5f3c24e9e29e6479c614d09f9121e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultSpawnPoint: {fileID: 8542735673113716557}
-  _offset: 1.5
-  _targetPoint: {fileID: 3705909911753435782}
-  _currentFirstUnitInQueue: {fileID: 0}
-  _unitsInQueue: []
+  <TargetPoint>k__BackingField: {fileID: 3705909911753435782}
+  <QueueSpawnPoint>k__BackingField: {fileID: 3622461921866948798}
+  <UnitSpawnPoint>k__BackingField: {fileID: 8542735673113716557}
+  <Offset>k__BackingField: 1.5
 --- !u!1 &8873324515716249927
 GameObject:
   m_ObjectHideFlags: 0

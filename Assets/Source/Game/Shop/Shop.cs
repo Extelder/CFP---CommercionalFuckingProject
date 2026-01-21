@@ -5,20 +5,20 @@ using Zenject;
 
 public class Shop
 {
-    private UnitProduct _currentFirstUnitInQueue;
+    private IUnitPurchasable _unitPurchasable;
     
-    public void SetFirstUnitInQueue(UnitProduct unitProduct)
+    public void SetFirstUnitInQueue(IUnitPurchasable unitPurchasable)
     {
         Debug.Log("shopSet");
-        _currentFirstUnitInQueue = unitProduct;
+        _unitPurchasable = unitPurchasable;
     }
 
     public bool TryBuy(int recourcesCount)
     {
-        if (recourcesCount >= _currentFirstUnitInQueue.NeededResources)
+        Debug.Log("TRY BUY");
+        if (recourcesCount >= _unitPurchasable.NeededRecources)
         {
-            Debug.Log("shopBuy");
-            _currentFirstUnitInQueue.Buy();
+            _unitPurchasable.Buy();
             return true;
         }
 

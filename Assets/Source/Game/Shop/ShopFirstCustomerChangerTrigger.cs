@@ -7,7 +7,6 @@ using Zenject;
 public class ShopFirstCustomerChangerTrigger : MonoBehaviour
 {
     private Shop _shop;
-    private UnitProduct _unitProduct;
     
     [Inject]
     public void Construct(Shop shop)
@@ -17,10 +16,9 @@ public class ShopFirstCustomerChangerTrigger : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<UnitProduct>(out UnitProduct product))
+        if (other.TryGetComponent<IUnitPurchasable>(out IUnitPurchasable product))
         {
             _shop.SetFirstUnitInQueue(product);
-            _unitProduct = product;
         }
     }
 }
