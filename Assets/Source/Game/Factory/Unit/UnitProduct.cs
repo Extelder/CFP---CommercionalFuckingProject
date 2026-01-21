@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable, IUnitInput
+public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable, IUnitInput, IUnitDeathable
 {
     public float Speed { get; set; }
     [field: SerializeField] public float MoveRate { get; set; }
@@ -16,11 +17,16 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
  
     private Transform _targetPoint;
     private NavMeshUnitMovementHandler _navMeshUnitMovementHandler;
+    private ReactiveProperty<IUnitKillable> _unitKillable = new ReactiveProperty<IUnitKillable>();
+    private UnitDeathHandler _unitDeathHandler;
     
     [Inject]
     public void Construct(UnitConfig config)
     {
         Speed = config.Speed;
+        
+        Debug.Log("INITTTT");
+        _unitDeathHandler = new UnitDeathHandler(this, _unitKillable);
     }
     
     public override void Init()
@@ -37,6 +43,7 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
     {
         _navMeshUnitMovementHandler?.Dispose();
         _navMeshUnitMovementHandler = new NavMeshUnitMovementHandler(this, this);
+        _unitKillable.Value = _navMeshUnitMovementHandler;
         MoveInputDrag?.Invoke(targetPoint);
     }
     
@@ -47,5 +54,11 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
     public void Dispose()
     {
         _navMeshUnitMovementHandler?.Dispose();
+        _unitDeathHandler?.Dispose();
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }

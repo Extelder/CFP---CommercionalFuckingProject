@@ -12,6 +12,7 @@ public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
     [Inject]
     public void Construct(UnitConfig config)
     {
+        base.Construct(config);
         NeededRecources = config.NeededRecources;
     }
     

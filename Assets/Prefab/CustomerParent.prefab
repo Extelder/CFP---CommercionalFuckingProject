@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MoveRate>k__BackingField: 0.2
-  <DistanceToStop>k__BackingField: 0.1
+  <DistanceToStop>k__BackingField: 0.02
   <NavMeshAgent>k__BackingField: {fileID: 7045506108158453723}
   <Transform>k__BackingField: {fileID: 1913385859418574604}
 --- !u!195 &7045506108158453723

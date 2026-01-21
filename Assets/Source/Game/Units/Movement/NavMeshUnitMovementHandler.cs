@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class NavMeshUnitMovementHandler : UnitMovementHandler
+public class NavMeshUnitMovementHandler : UnitMovementHandler, IUnitKillable
 {
-    public event Action DestinationReached;
-    
     private CompositeDisposable _disposable = new CompositeDisposable();
     protected INavMeshMovable navMeshMovable;
     
@@ -24,7 +22,7 @@ public class NavMeshUnitMovementHandler : UnitMovementHandler
             if (navMeshMovable.NavMeshAgent.remainingDistance >= navMeshMovable.DistanceToStop)
             {
                 Debug.Log("REACHED DEST");
-                DestinationReached?.Invoke();
+                UnitKill?.Invoke();
                 _disposable.Clear();
                 return;
             }
@@ -37,4 +35,6 @@ public class NavMeshUnitMovementHandler : UnitMovementHandler
         base.Dispose();
         _disposable.Clear();
     }
+
+    public event Action UnitKill;
 }

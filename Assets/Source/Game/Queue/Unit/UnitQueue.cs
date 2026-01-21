@@ -8,11 +8,6 @@ using Zenject;
 
 public class UnitQueue : Queue<CustomerUnitProduct>
 {
-    public UnitQueue()
-    {
-        Debug.Log("FLKFKFKF");
-    }
-    
     public override List<CustomerUnitProduct> UnitsInQueue { get; set; } = new List<CustomerUnitProduct>();
 
     public override void AddToQueue(CustomerUnitProduct product)
