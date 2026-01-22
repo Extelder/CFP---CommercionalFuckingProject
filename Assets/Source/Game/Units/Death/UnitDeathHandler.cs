@@ -14,7 +14,6 @@ public class UnitDeathHandler : IDisposable
     {
         unitKillable.Subscribe(_ =>
         {
-            Debug.Log("UNITDEATH");
             if (_ == null)
             {
                 return;

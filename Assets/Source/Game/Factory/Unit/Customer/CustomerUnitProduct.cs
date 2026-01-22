@@ -7,7 +7,7 @@ using Zenject;
 public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
 {
     public event Action Bought;
-    public int NeededRecources { get; set; }
+    public uint NeededRecources { get; set; }
     private Shop _shop;
 
     [Inject]
@@ -20,7 +20,7 @@ public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
     
     public void Buy()
     {
-        Bought?.Invoke();
-        _shop.TryBuy();
+        if (_shop.TryBuy())
+            Bought?.Invoke();
     }
 }

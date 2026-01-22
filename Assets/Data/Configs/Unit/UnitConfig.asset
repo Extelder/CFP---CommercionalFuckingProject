@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: UnitConfig
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 10
-  <NeededRecources>k__BackingField: 90
+  <NeededRecources>k__BackingField: 1

@@ -21,7 +21,6 @@ public class NavMeshUnitMovementHandler : UnitMovementHandler, IUnitKillable
         {
             if (navMeshMovable.NavMeshAgent.remainingDistance >= navMeshMovable.DistanceToStop)
             {
-                Debug.Log("REACHED DEST");
                 UnitKill?.Invoke();
                 _disposable.Clear();
                 return;

@@ -685,6 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _queueConfig: {fileID: 11400000, guid: 028fee8126d652b4795fb52dfbc2e359, type: 2}
   _unitConfig: {fileID: 11400000, guid: 25cafab4a5daa244c8d34a29786abe1c, type: 2}
+  _shopContainer: {fileID: 1826753083}
   _spawnPoint: {fileID: 2100781959}
   _unitPrefab: {fileID: 1480139557273989666, guid: ee27fd2206d68b8408aedee64c69a03b,
     type: 3}
@@ -1355,7 +1356,6 @@ GameObject:
   - component: {fileID: 1132301205}
   - component: {fileID: 1132301206}
   - component: {fileID: 1132301207}
-  - component: {fileID: 1132301208}
   - component: {fileID: 1132301209}
   m_Layer: 0
   m_Name: ShopTrigger
@@ -1412,18 +1412,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.298562, y: 1.1569611, z: 2.9363303}
   m_Center: {x: -0.14928102, y: 0.07848054, z: -0.019814014}
---- !u!114 &1132301208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132301204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061ef575815074247b62e1be835a199b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1132301209
 Rigidbody:
   m_ObjectHideFlags: 0

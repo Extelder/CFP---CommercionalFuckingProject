@@ -15,13 +15,11 @@ public class QueuePurchasableHandler<T> : QueueMovableHandler<T>, IInitializable
     {
         queueContainable.RunCoroutine(FillQueueOnStart());
         queueContainable.UnitSpawnPoint.localPosition = new Vector3(-queueContainable.Offset * config.MaxQueueCapacity, 0, 0);
-        Debug.Log("INITIALIZED");
     }
 
     public override void SetFirstUnitInQueue()
     {
         base.SetFirstUnitInQueue();
-        Debug.Log("BOUGHTTT");
         currentFirstUnitInQueue.Bought += OnUnitBought;
     }
 

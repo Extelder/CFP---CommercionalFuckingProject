@@ -30,7 +30,6 @@ public abstract class QueueHandler<T> where T : AbstractProduct
             AddToQueue(queueContainable.QueueSpawnPoint.position + new Vector3(-queueContainable.Offset * currentUnitCount, 0, 0));
             if (currentUnitCount > config.MaxQueueCapacity - 1)
             {
-                Debug.Log("SETFIRST");
                 SetFirstUnitInQueue();
                 break;
             }

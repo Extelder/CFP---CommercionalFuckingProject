@@ -14,7 +14,6 @@ public class UnitFactory : AbstractFactory<CustomerUnitProduct>
     {
         this.container = container;
         this.prefab = prefab;
-        Debug.Log("DSDSDDW");
     }
 
     public override CustomerUnitProduct CreateProduct(Vector3 spawnPosition)

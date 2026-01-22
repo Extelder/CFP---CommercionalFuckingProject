@@ -25,7 +25,6 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
     {
         Speed = config.Speed;
         
-        Debug.Log("INITTTT");
         _unitDeathHandler = new UnitDeathHandler(this, _unitKillable);
     }
     
