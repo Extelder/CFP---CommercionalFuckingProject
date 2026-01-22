@@ -18,7 +18,7 @@ public class SHOPCHECKDELETE : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
-            _shop.TryBuy(100);
+            _shop.TryBuy();
         }
     }
 }

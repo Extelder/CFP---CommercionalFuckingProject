@@ -11,16 +11,14 @@ public class Shop
     {
         Debug.Log("shopSet");
         _unitPurchasable = unitPurchasable;
+        _unitPurchasable.Buy();
     }
 
-    public bool TryBuy(int recourcesCount)
+    public bool TryBuy()
     {
         Debug.Log("TRY BUY");
-        if (recourcesCount >= _unitPurchasable.NeededRecources)
-        {
-            _unitPurchasable.Buy();
+            //RETURN TRYREMOVE
             return true;
-        }
 
         return false;
     }
