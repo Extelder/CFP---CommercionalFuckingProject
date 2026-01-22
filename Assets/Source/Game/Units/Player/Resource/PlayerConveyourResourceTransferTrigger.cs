@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class PlayerResourceTransferTrigger : MonoBehaviour, IConveyourResourceContainerTransfer
+public class PlayerConveyourResourceTransferTrigger : MonoBehaviour, IConveyourResourceContainerTransfer
 {
     [field: SerializeField] public ResourceContainer ResourceContainer { get; set; }
+
     [field: SerializeField] public ConveyourResource ConveyourResource { get; set; }
-
-
+    
     private ResourceTransfer _resourceTransfer;
     private ResourceContainerView _containerView;
 
