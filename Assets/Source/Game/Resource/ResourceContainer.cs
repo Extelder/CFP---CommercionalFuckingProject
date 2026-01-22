@@ -16,6 +16,7 @@ public class ResourceContainer
     private const int _minValue = 0;
 
     public event Action<int> ValueChanged;
+    public event Action<int> Added;
 
     public ResourceContainer(Resource type, uint MaxValue, bool fillByDefault = false)
     {
@@ -47,6 +48,7 @@ public class ResourceContainer
 
         CurrentValue += (int) value;
         ValueChanged?.Invoke(CurrentValue);
+        Added?.Invoke((int)value);
         return true;
     }
 
