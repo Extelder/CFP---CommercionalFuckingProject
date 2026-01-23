@@ -685,6 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _queueConfig: {fileID: 11400000, guid: 028fee8126d652b4795fb52dfbc2e359, type: 2}
   _unitConfig: {fileID: 11400000, guid: 25cafab4a5daa244c8d34a29786abe1c, type: 2}
+  _shopConfig: {fileID: 11400000, guid: 70a5791e27acc2b4caa397b5fbc77129, type: 2}
   _shopContainer: {fileID: 1826753083}
   _spawnPoint: {fileID: 2100781959}
   _unitPrefab: {fileID: 1480139557273989666, guid: ee27fd2206d68b8408aedee64c69a03b,

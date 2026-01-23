@@ -20,7 +20,7 @@ public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
     
     public void Buy()
     {
-        if (_shop.TryBuy())
+        if (_shop.TryRemove())
             Bought?.Invoke();
     }
 }

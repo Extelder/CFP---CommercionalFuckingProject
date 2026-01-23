@@ -7,6 +7,8 @@ public class GameSceneInstaller : MonoInstaller
 {
     [SerializeField] private QueueConfig _queueConfig;
     [SerializeField] private UnitConfig _unitConfig;
+    [SerializeField] private ShopConfig _shopConfig;
+    
     [SerializeField] private ShopContainer _shopContainer;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private GameObject _unitPrefab;
@@ -16,6 +18,7 @@ public class GameSceneInstaller : MonoInstaller
     {
         Container.Bind<QueueConfig>().FromInstance(_queueConfig);
         Container.Bind<UnitConfig>().FromInstance(_unitConfig);
+        Container.Bind<ShopConfig>().FromInstance(_shopConfig);
         Container.Bind<AbstractFactory<CustomerUnitProduct>>().To<UnitFactory>()
             .AsSingle()
             .WithArguments(_unitPrefab);

@@ -25,7 +25,6 @@ public class ResourceContainerView : IDisposable
     private void OnValueChanged(int value)
     {
      
-        Debug.Log(value);
         for (int i = 0; i < _resourceContainer.MaxValue; i++)
         {
             if (value -1 >= i)
