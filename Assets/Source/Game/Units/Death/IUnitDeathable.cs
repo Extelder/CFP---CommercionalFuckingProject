@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IUnitDeathable
 {
     public void Death();
+    public bool CanDie { get; set; }
 }

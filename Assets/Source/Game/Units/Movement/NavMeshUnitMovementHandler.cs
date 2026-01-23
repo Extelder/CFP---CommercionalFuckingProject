@@ -19,7 +19,9 @@ public class NavMeshUnitMovementHandler : UnitMovementHandler, IUnitKillable
     {
         Observable.Interval(TimeSpan.FromSeconds(navMeshMovable.MoveRate)).Subscribe(_ =>
         {
-            if (navMeshMovable.NavMeshAgent.remainingDistance >= navMeshMovable.DistanceToStop)
+            Debug.Log("REMAINING" + navMeshMovable.NavMeshAgent.remainingDistance);
+            Debug.Log("STOP" + navMeshMovable.DistanceToStop);
+            if (navMeshMovable.NavMeshAgent.remainingDistance > navMeshMovable.DistanceToStop)
             {
                 UnitKill?.Invoke();
                 _disposable.Clear();

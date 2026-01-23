@@ -49,7 +49,6 @@ public class Shop : IDisposable
             currentTime += 0.1f;   
             if (currentTime >= _config.BuyCooldown)
             {
-                Debug.Log("CAN BUY");
                 _canBuy = true;
                 _timeDisposable.Clear();
             }

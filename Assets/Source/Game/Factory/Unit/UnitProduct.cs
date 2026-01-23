@@ -14,30 +14,30 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
     [field: SerializeField] public float DistanceToStop { get; set; }
     [field: SerializeField] public NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] public Transform Transform { get; set; }
- 
+
     private Transform _targetPoint;
     private NavMeshUnitMovementHandler _navMeshUnitMovementHandler;
     private ReactiveProperty<IUnitKillable> _unitKillable = new ReactiveProperty<IUnitKillable>();
     private UnitDeathHandler _unitDeathHandler;
-    
+
     [Inject]
     public void Construct(UnitConfig config)
     {
         Speed = config.Speed;
-        
+
         _unitDeathHandler = new UnitDeathHandler(this, _unitKillable);
     }
-    
+
     public override void Init()
     {
         Initialized?.Invoke();
     }
-    
+
     public void Move(Vector3 targetPoint)
     {
         CreateNewClassExamples(targetPoint);
     }
-    
+
     private void CreateNewClassExamples(Vector3 targetPoint)
     {
         _navMeshUnitMovementHandler?.Dispose();
@@ -45,7 +45,7 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
         _unitKillable.Value = _navMeshUnitMovementHandler;
         MoveInputDrag?.Invoke(targetPoint);
     }
-    
+
     public override event Action Initialized;
     public event Action<Vector3> MoveInputDrag;
     public event Action<Vector2> RotateInputDrag;
@@ -58,6 +58,10 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
 
     public void Death()
     {
+        if (!CanDie)
+            return;
         Destroy(gameObject);
     }
+
+    public bool CanDie { get; set; }
 }

@@ -65,9 +65,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MoveRate>k__BackingField: 0.2
-  <DistanceToStop>k__BackingField: 0.02
+  <DistanceToStop>k__BackingField: 0.001
   <NavMeshAgent>k__BackingField: {fileID: 7045506108158453723}
   <Transform>k__BackingField: {fileID: 1913385859418574604}
+  _animator: {fileID: 4587260480170130096}
 --- !u!195 &7045506108158453723
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14523,8 +14524,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d3dc129b2c423114faccc5bd73b01455,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4587260480170130096}
   m_SourcePrefab: {fileID: 100100000, guid: d3dc129b2c423114faccc5bd73b01455, type: 3}
+--- !u!1 &8234316950501556444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d3dc129b2c423114faccc5bd73b01455,
+    type: 3}
+  m_PrefabInstance: {fileID: 9117329029212585357}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4587260480170130096
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8234316950501556444}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c63dad750166174f9fe684dbe5b2271, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &8722904096072260198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d3dc129b2c423114faccc5bd73b01455,

@@ -20,5 +20,10 @@ public class ShopFirstCustomerChangerTrigger : MonoBehaviour
         {
             _shop.SetFirstUnitInQueue(product);
         }
+
+        if (other.TryGetComponent<IUnitDeathable>(out IUnitDeathable deathable))
+        {
+            deathable.CanDie = true;
+        }
     }
 }
