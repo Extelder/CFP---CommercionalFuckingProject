@@ -12,7 +12,7 @@ public class Shop : IDisposable
     public Shop(ShopContainer shopContainer)
     {
         _shopContainer = shopContainer;
-        _shopContainer.ResourceContainer.ValueChanged += OnValueChanged;
+        _shopContainer.ResourceContainer.Added += OnValueAdded;
     }
     
     public void SetFirstUnitInQueue(IUnitPurchasable unitPurchasable)
@@ -20,9 +20,8 @@ public class Shop : IDisposable
         _unitPurchasable = unitPurchasable;
     }
 
-    private void OnValueChanged(int value)
+    private void OnValueAdded(int value)
     {
-        Debug.Log("VALUE CHANGED");
         _unitPurchasable.Buy();
     }
 
@@ -33,6 +32,6 @@ public class Shop : IDisposable
 
     public void Dispose()
     {
-        _shopContainer.ResourceContainer.ValueChanged -= OnValueChanged;
+        _shopContainer.ResourceContainer.Added -= OnValueAdded;
     }
 }

@@ -7,9 +7,16 @@ public class ShopContainer : MonoBehaviour, IResourceContainerTransfer
 {
     [field: SerializeField] public ResourceContainer ResourceContainer { get; set; }
 
+    private ResourceContainerView _resourceContainerView;
+
     private void Start()
     {
-        ResourceContainerView resourceContainerView =
+        _resourceContainerView =
             new ResourceContainerView(ResourceContainer, ResourceContainer.SpawnPoint);
+    }
+
+    private void OnDisable()
+    {
+        _resourceContainerView.Dispose();
     }
 }
