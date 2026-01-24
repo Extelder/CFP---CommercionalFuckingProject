@@ -32,7 +32,9 @@ public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
     public void Buy()
     {
         if (_shop.TryRemove())
+        {
             Bought?.Invoke();
+        }
     }
 
     private void OnDisable()

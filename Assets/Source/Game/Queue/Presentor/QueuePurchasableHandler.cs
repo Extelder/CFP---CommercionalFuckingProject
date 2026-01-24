@@ -14,7 +14,7 @@ public class QueuePurchasableHandler<T> : QueueMovableHandler<T>, IInitializable
     public void Initialize()
     {
         queueContainable.RunCoroutine(FillQueueOnStart());
-        queueContainable.UnitSpawnPoint.localPosition = new Vector3(-queueContainable.Offset * config.MaxQueueCapacity, 0, 0);
+        queueContainable.UnitSpawnPoint.localPosition = new Vector3(-queueContainable.Offset * (config.MaxQueueCapacity - 1), 0, 0);
     }
 
     public override void SetFirstUnitInQueue()

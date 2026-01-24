@@ -53,13 +53,16 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
     public void Dispose()
     {
         _navMeshUnitMovementHandler?.Dispose();
+        _unitKillable?.Dispose();
         _unitDeathHandler?.Dispose();
     }
 
     public void Death()
     {
+        Debug.Log("CAN DIE");
         if (!CanDie)
             return;
+        Debug.Log("CAN DIE REALLY");
         Destroy(gameObject);
     }
 

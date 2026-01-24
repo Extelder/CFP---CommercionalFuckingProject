@@ -27,11 +27,13 @@ public class UnitDeathHandler : IDisposable
 
     private void OnUnitKill()
     {
+        Debug.Log("+UNITKILL");
         _unitDeathable.Death();
     }
 
     public void Dispose()
     {
         _unitKillable.UnitKill -= OnUnitKill;
+        _disposable.Clear();
     }
 }

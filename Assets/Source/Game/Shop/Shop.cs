@@ -13,12 +13,10 @@ public class Shop : IDisposable
     private IUnitPurchasable _unitPurchasable;
     private ShopContainer _shopContainer;
     private ShopConfig _config;
-    private bool _canBuy;
 
     public Shop(ShopContainer shopContainer, ShopConfig config)
     {
         _shopContainer = shopContainer;
-        _shopContainer.ResourceContainer.Added += OnValueAdded;
         _config = config;
     }
 
@@ -28,33 +26,28 @@ public class Shop : IDisposable
         CheckOnCooldown();
     }
 
-    private void OnValueAdded(int value)
-    {
-        Observable.Interval(TimeSpan.FromSeconds(0.02f)).Subscribe(_ =>
-        {
-            if (_canBuy)
-            {
-                _unitPurchasable.Buy();
-                _canBuy = false;
-                _buyDisposable.Clear();
-            }
-        }).AddTo(_buyDisposable);
-    }
-
     private void CheckOnCooldown()
     {
+        _timeDisposable.Clear();
         float currentTime = 0;
         Observable.Interval(TimeSpan.FromSeconds(0.1f)).Subscribe(_ =>
         {
-            currentTime += 0.1f;   
+            currentTime += 0.1f;
             if (currentTime >= _config.BuyCooldown)
             {
-                _canBuy = true;
+                CheckOnBuy();
                 _timeDisposable.Clear();
             }
         }).AddTo(_timeDisposable);
     }
-    
+
+    private void CheckOnBuy()
+    {
+        _buyDisposable.Clear();
+        Observable.Interval(TimeSpan.FromSeconds(0.2f)).Subscribe(_ => { _unitPurchasable.Buy(); })
+            .AddTo(_buyDisposable);
+    }
+
 
     public bool TryRemove()
     {
@@ -63,7 +56,6 @@ public class Shop : IDisposable
 
     public void Dispose()
     {
-        _shopContainer.ResourceContainer.Added -= OnValueAdded;
         _timeDisposable.Clear();
         _buyDisposable.Clear();
     }
