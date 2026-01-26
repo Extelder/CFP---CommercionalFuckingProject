@@ -18,7 +18,6 @@ public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
     [Inject]
     public void Construct(UnitConfig config, Shop shop)
     {
-        base.Construct(config);
         NeededRecources = config.NeededRecources;
         _shop = shop;
     }

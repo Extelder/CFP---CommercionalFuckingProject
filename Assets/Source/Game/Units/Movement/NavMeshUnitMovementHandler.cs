@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class NavMeshUnitMovementHandler : UnitMovementHandler, IUnitKillable
+public class NavMeshUnitMovementHandler : UnitMovementHandler
 {
     private CompositeDisposable _disposable = new CompositeDisposable();
     protected INavMeshMovable navMeshMovable;
-    
+
+    public event Action DestinationReached;
+
     public NavMeshUnitMovementHandler(IUnitInput unitInput, INavMeshMovable navMeshMovable) : base(unitInput)
     {
         this.navMeshMovable = navMeshMovable;
@@ -17,15 +19,15 @@ public class NavMeshUnitMovementHandler : UnitMovementHandler, IUnitKillable
 
     public override void OnMoveUnitInputReceived(Vector3 value)
     {
+        _disposable.Clear();
         Observable.Interval(TimeSpan.FromSeconds(navMeshMovable.MoveRate)).Subscribe(_ =>
         {
-            if (navMeshMovable.NavMeshAgent.remainingDistance > navMeshMovable.DistanceToStop)
-            {
-                UnitKill?.Invoke();
-                _disposable.Clear();
-                return;
-            }
             navMeshMovable.NavMeshAgent.SetDestination(value);
+            if (navMeshMovable.NavMeshAgent.remainingDistance < navMeshMovable.DistanceToStop)
+            {
+                Debug.Log("DESTINATION REACHED");
+                DestinationReached?.Invoke();
+            }
         }).AddTo(_disposable);
     }
 
@@ -34,6 +36,4 @@ public class NavMeshUnitMovementHandler : UnitMovementHandler, IUnitKillable
         base.Dispose();
         _disposable.Clear();
     }
-
-    public event Action UnitKill;
 }

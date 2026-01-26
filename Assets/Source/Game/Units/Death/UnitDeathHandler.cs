@@ -27,7 +27,6 @@ public class UnitDeathHandler : IDisposable
 
     private void OnUnitKill()
     {
-        Debug.Log("+UNITKILL");
         _unitDeathable.Death();
     }
 

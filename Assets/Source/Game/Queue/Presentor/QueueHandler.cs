@@ -6,6 +6,8 @@ using Zenject;
 
 public abstract class QueueHandler<T> where T : AbstractProduct
 {
+    public event Action<T> UnitCanBeKilled;
+    
     protected T currentFirstUnitInQueue;
     protected Queue<T> queue;
     protected AbstractFactory<T> factory;
@@ -60,5 +62,6 @@ public abstract class QueueHandler<T> where T : AbstractProduct
     public virtual void SetFirstUnitInQueue()
     {
         currentFirstUnitInQueue = queue.UnitsInQueue[0];
+        UnitCanBeKilled?.Invoke(currentFirstUnitInQueue);
     }
 }
