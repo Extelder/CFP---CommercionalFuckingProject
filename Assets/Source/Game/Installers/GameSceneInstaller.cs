@@ -13,6 +13,8 @@ public class GameSceneInstaller : MonoInstaller
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private GameObject _unitPrefab;
     [SerializeField] private GameObject _queueViewPrefab;
+    
+    
 
     public override void InstallBindings()
     {
