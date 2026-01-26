@@ -20,6 +20,7 @@ public class QueuePurchasableHandler<T> : QueueMovableHandler<T>, IInitializable
     public override void SetFirstUnitInQueue()
     {
         base.SetFirstUnitInQueue();
+        UnitCanBeKilled?.Invoke(currentFirstUnitInQueue);
         currentFirstUnitInQueue.Bought += OnUnitBought;
     }
 

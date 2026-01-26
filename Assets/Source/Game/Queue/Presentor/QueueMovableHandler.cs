@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QueueMovableHandler<T> : QueueHandler<T> where T : UnitProduct
+public class QueueMovableHandler<T> : QueueHandler<T>, IQueueKillable<T> where T : UnitProduct
 {
     public QueueMovableHandler(Queue<T> queue, IQueueContainable queueContainable, AbstractFactory<T> factory,
         QueueConfig config) : base(queue, queueContainable, factory, config)
@@ -27,4 +28,6 @@ public class QueueMovableHandler<T> : QueueHandler<T> where T : UnitProduct
     {
         Move();
     }
+
+    public Action<T> UnitCanBeKilled { get; set; }
 }

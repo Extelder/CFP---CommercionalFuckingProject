@@ -14,7 +14,6 @@ public class GameSceneInstaller : MonoInstaller
     [SerializeField] private GameObject _unitPrefab;
     [SerializeField] private GameObject _queueViewPrefab;
     
-    
 
     public override void InstallBindings()
     {
