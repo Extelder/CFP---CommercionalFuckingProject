@@ -30,6 +30,7 @@ public class UpgradePlayerMoveSpeed : Upgrade
     public override uint GetCurrentCost() => _currentUpgradeTier.Cost;
 
     public override string GetCurrentValueByString() => _currentUpgradeTier.Value.ToString();
+    public override bool CanBeUpgraded() => CurrentTierId < UpgradeTiers.Length - 1;
 
     public override void Perform()
     {

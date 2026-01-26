@@ -26,6 +26,8 @@ public class UpgradeShop : MonoBehaviour
 
     public void BuyUpgrade(Upgrade upgrade)
     {
+        if (!upgrade.CanBeUpgraded())
+            return;
         if (_wallet.TrySpend(upgrade.GetCurrentCost()))
         {
             upgrade.Perform();

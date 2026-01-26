@@ -24,6 +24,7 @@ public abstract class Upgrade
     public abstract void Perform();
     public abstract uint GetCurrentCost();
     public abstract string GetCurrentValueByString();
+    public abstract bool CanBeUpgraded();
 
     public void Inject(DiContainer container)
     {
