@@ -13,12 +13,25 @@ public class UpgradeUI : MonoBehaviour
     private Upgrade _upgrade;
     private UpgradeShop _upgradeShop;
 
+    private bool _initialized;
+    
     public void Init(Upgrade upgrade, UpgradeShop upgradeShop)
     {
+        _initialized = true;
         _upgrade = upgrade;
         _upgradeShop = upgradeShop;
         _upgrade.Upgraded += OnUpgraded;
+        _upgrade.MaxLevelReached += OnMaxLevelReached;
         UpdateCurrentData();
+    }
+
+    private void OnEnable()
+    {
+        if (_initialized)
+        {
+            _upgrade.Upgraded += OnUpgraded;
+            _upgrade.MaxLevelReached += OnMaxLevelReached;
+        }
     }
 
     private void OnUpgraded()
@@ -33,6 +46,13 @@ public class UpgradeUI : MonoBehaviour
         _upgradeNameText.text = _upgrade.Name;
     }
 
+    private void OnMaxLevelReached()
+    {
+        _costText.text = "";
+        _valueText.text = "Max Level Reached";
+        _upgradeNameText.text = _upgrade.Name;
+    }
+
     public void TryUpgrade()
     {
         _upgradeShop.BuyUpgrade(_upgrade);
@@ -41,5 +61,6 @@ public class UpgradeUI : MonoBehaviour
     private void OnDisable()
     {
         _upgrade.Upgraded -= OnUpgraded;
+        _upgrade.MaxLevelReached -= OnMaxLevelReached;
     }
 }

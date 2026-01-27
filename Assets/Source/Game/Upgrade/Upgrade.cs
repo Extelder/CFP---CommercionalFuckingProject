@@ -17,6 +17,7 @@ public abstract class Upgrade
 {
     [field: SerializeField] public string Name { get; private set; }
     public abstract event Action Upgraded;
+    public abstract event Action MaxLevelReached;
 
     public int CurrentTierId { get; protected set; }
 

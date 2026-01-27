@@ -1527,6 +1527,73 @@ Transform:
   - {fileID: 1702311612}
   m_Father: {fileID: 205188549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &940217982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 940217983}
+  - component: {fileID: 940217985}
+  - component: {fileID: 940217984}
+  m_Layer: 0
+  m_Name: UpgradeTriggert
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &940217983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940217982}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.008, y: 0, z: -0.79}
+  m_LocalScale: {x: 1, y: 1, z: 2.2405}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1214146680}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &940217984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940217982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6caf3d3d78267241a48e756f1f8418a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameObject: {fileID: 304413069}
+--- !u!65 &940217985
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940217982}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &951191780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,6 +2254,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2001785451}
+  - {fileID: 940217983}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1214146681
@@ -2202,19 +2270,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Upgrades>k__BackingField:
-  - rid: 4772237305209683970
+  - rid: 4772237331019333632
   references:
     version: 2
     RefIds:
-    - rid: 4772237305209683970
-      type: {class: UpgradePlayerMoveSpeed, ns: , asm: Assembly-CSharp}
+    - rid: 4772237331019333632
+      type: {class: PlayerMoveSpeedUgrade, ns: , asm: Assembly-CSharp}
       data:
         <Name>k__BackingField: PlayerMoveSpeed
         <UpgradeTiers>k__BackingField:
-        - <Cost>k__BackingField: 5
-          <Value>k__BackingField: 1
-        - <Cost>k__BackingField: 6
-          <Value>k__BackingField: 225
+        - <Cost>k__BackingField: 15
+          <Value>k__BackingField: 10
+        - <Cost>k__BackingField: 25
+          <Value>k__BackingField: 100
 --- !u!114 &1214146682
 MonoBehaviour:
   m_ObjectHideFlags: 0
