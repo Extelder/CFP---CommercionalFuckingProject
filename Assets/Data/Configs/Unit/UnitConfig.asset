@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5417ab6c83eaee46af19767e4a01740, type: 3}
   m_Name: UnitConfig
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 2
+  <Speed>k__BackingField:
+    value: 3
   <NeededRecources>k__BackingField: 1

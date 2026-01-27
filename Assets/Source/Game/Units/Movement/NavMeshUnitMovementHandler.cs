@@ -14,7 +14,7 @@ public class NavMeshUnitMovementHandler : UnitMovementHandler
     public NavMeshUnitMovementHandler(IUnitInput unitInput, INavMeshMovable navMeshMovable) : base(unitInput)
     {
         this.navMeshMovable = navMeshMovable;
-        this.navMeshMovable.NavMeshAgent.speed = this.navMeshMovable.Speed;
+        this.navMeshMovable.NavMeshAgent.speed = this.navMeshMovable.Speed.Value;
     }
 
     public override void OnMoveUnitInputReceived(Vector3 value)

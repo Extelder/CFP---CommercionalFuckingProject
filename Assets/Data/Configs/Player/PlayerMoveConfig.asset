@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eefae9d2f1d5b14bb8783f7b32d7a48, type: 3}
   m_Name: PlayerMoveConfig
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 1.5
+  <MoveSpeed>k__BackingField:
+    value: 3
   <RotateSpeed>k__BackingField: 1

@@ -9,7 +9,7 @@ using Zenject;
 
 public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable, IUnitInput, IUnitDeathable
 {
-    public float Speed { get; set; }
+    public ReactiveProperty<float> Speed { get; set; }
     [field: SerializeField] public float MoveRate { get; set; }
     [field: SerializeField] public float DistanceToStop { get; set; }
     [field: SerializeField] public NavMeshAgent NavMeshAgent { get; set; }

@@ -9,7 +9,7 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable, IUni
 {
     [field: SerializeField] public ResourceContainer ResourceContainer { get; private set; }
 
-    public float Speed { get; set; }
+    public ReactiveProperty<float> Speed { get; set; }
     [field: SerializeField] public Rigidbody Rigidbody { get; set; }
     [field: SerializeField] public Animator Animator { get; set; }
 
@@ -22,6 +22,7 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable, IUni
     private PlayerUnitCutDownHandler _cutDownHandler;
     private PlayerUnitCutDownAnimatorHandler _playerUnitCutDownAnimatorHandler;
     private PlayerCutDownConfig _cutDownConfig;
+    private float _speed;
 
     [Inject]
     public void Construct(PlayerMoveConfig moveConfig, IUnitInput playerInput, PlayerCutDownConfig config)

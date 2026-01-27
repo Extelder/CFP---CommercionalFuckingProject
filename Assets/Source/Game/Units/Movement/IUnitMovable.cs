@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public interface IUnitMovable
 {
-    float Speed { get; set; }
+    ReactiveProperty<float> Speed { get; set; }
 }
