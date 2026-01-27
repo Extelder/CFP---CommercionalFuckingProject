@@ -17,16 +17,19 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable, IUni
 
     private PlayerAnimator _animator;
 
+    private PlayerMoveConfig _moveConfig;
+    
     private PlayerUnitCutDownHandler _cutDownHandler;
     private PlayerUnitCutDownAnimatorHandler _playerUnitCutDownAnimatorHandler;
+    private PlayerCutDownConfig _cutDownConfig;
 
     [Inject]
-    public void Construct(PlayerConfig config, IUnitInput playerInput)
+    public void Construct(PlayerMoveConfig moveConfig, IUnitInput playerInput, PlayerCutDownConfig config)
     {
-        Speed = config.MoveSpeed;
+        _cutDownConfig = config;
+        Speed = moveConfig.MoveSpeed;
         _disposable = new CompositeDisposable();
         _animator = new PlayerAnimator(Animator, playerInput, _disposable);
-
         ResourceContainerView containerView =
             new ResourceContainerView(ResourceContainer, ResourceContainer.SpawnPoint);
     }
@@ -45,7 +48,7 @@ public class Player : MonoBehaviour, IRigidbodyMovable, IUnitTransformable, IUni
         _playerUnitCutDownAnimatorHandler?.Dispose();
 
         _cutDownHandler =
-            new PlayerUnitCutDownHandler(playerUnitCutDownInput, new CompositeDisposable(), ResourceContainer);
+            new PlayerUnitCutDownHandler(playerUnitCutDownInput, new CompositeDisposable(), ResourceContainer, _cutDownConfig);
 
         _playerUnitCutDownAnimatorHandler =
             new PlayerUnitCutDownAnimatorHandler(playerUnitCutDownInput, _animator, _animator);

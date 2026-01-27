@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 public class PlayerUnitCutDownHandler : UnitActionHandler
 {
     private IPlayerUnitCutDownInput _cutDownInput;
+
+    private float _currentValue;
 
     private Tween _shakeTween;
 
@@ -16,9 +19,10 @@ public class PlayerUnitCutDownHandler : UnitActionHandler
     private ResourceContainer _resourceContainer;
 
     public PlayerUnitCutDownHandler(IPlayerUnitCutDownInput unitActionInput, CompositeDisposable disposable,
-        ResourceContainer resourceContainer) : base(
+        ResourceContainer resourceContainer, PlayerCutDownConfig config) : base(
         unitActionInput)
     {
+        _currentValue = config.CutDownSpeed;
         _resourceContainer = resourceContainer;
         _cutDownInput = unitActionInput;
         _disposable = disposable;
@@ -26,7 +30,7 @@ public class PlayerUnitCutDownHandler : UnitActionHandler
 
     protected override void OnActionStarted()
     {
-        Observable.Interval(TimeSpan.FromSeconds(1.5f)).Subscribe(_ =>
+        Observable.Interval(TimeSpan.FromSeconds(_currentValue)).Subscribe(_ =>
         {
             _resourceContainer.TryAdd(1, _cutDownInput.Resource);
             _shakeTween = _cutDownInput.Tree.transform.DOShakeScale(1, 1);
