@@ -8,12 +8,16 @@ public class PlayerInstaller : MonoInstaller
     [SerializeField] private Player _player;
     [SerializeField] private Transform _spawnPoint;
 
-    [SerializeField] private PlayerConfig _config;
+    [SerializeField] private PlayerMoveConfig _moveConfig;
+    [SerializeField] private PlayerCutDownConfig _cutDownConfig;
 
     public override void InstallBindings()
     {
         Container.Bind<IUnitInput>().To<MobilePlayerInput>().AsSingle();
-        Container.Bind<PlayerConfig>().FromInstance(_config);
+        Container.Bind<PlayerMoveConfig>().FromInstance(_moveConfig);
+        Container.BindInterfacesTo<PlayerMoveConfig>().FromInstance(_moveConfig);
+        Container.Bind<PlayerCutDownConfig>().FromInstance(_cutDownConfig);
+        Container.BindInterfacesTo<PlayerCutDownConfig>().FromInstance(_cutDownConfig);
 
         Player player =
             Container.InstantiatePrefabForComponent<Player>(_player, _spawnPoint.position, Quaternion.identity, null);

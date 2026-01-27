@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerUnitRotationHandler : UnitRotationHandler
 {
-    protected PlayerConfig config;
+    protected PlayerMoveConfig MoveConfig;
 
-    public PlayerUnitRotationHandler(IUnitInput playerInput, IUnitTransformable unitTransformable, PlayerConfig config)
+    public PlayerUnitRotationHandler(IUnitInput playerInput, IUnitTransformable unitTransformable, PlayerMoveConfig moveConfig)
         : base(playerInput,
             unitTransformable)
     {
-        this.config = config;
+        this.MoveConfig = moveConfig;
     }
 
     protected override void OnRotateInputReceived(Vector2 value)
