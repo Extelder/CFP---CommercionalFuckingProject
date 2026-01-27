@@ -22,6 +22,7 @@ public class QueueMovableHandler<T> : QueueHandler<T>, IQueueKillable<T> where T
     public override void AddBeforeRemove()
     {
         currentFirstUnitInQueue.Move(queueContainable.TargetPoint.position);
+        UnitCanBeKilled?.Invoke(currentFirstUnitInQueue);
     }
 
     public override void AddAfterRemove()
