@@ -24,7 +24,7 @@ public class ConveyourResourceMoveHandler : IDisposable
     public virtual void OnMoveInputReceived(Vector3 point)
     {
         _tween?.Kill();
-        _tween = conveyourResource.transform.DOMove(point, conveyourResource.MoveSpeed)
+        _tween = conveyourResource.transform.DOMove(point, conveyourResource.CurrentMoveSpeed)
             .OnComplete(() => { PointReached?.Invoke(); });
     }
 

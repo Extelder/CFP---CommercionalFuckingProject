@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UniRx;
+using Zenject;
 
 public class ConveyourResource : AbstractProduct, IConveyourResourceMoveInput
 {
-    [field: SerializeField] public float MoveSpeed { get; private set; }
-
+    public float CurrentMoveSpeed { get; set; }
     public Action<Vector3> MoveInputReceived { get; set; }
 
     public override event Action Initialized;
@@ -15,6 +16,12 @@ public class ConveyourResource : AbstractProduct, IConveyourResourceMoveInput
 
     private IResourceContainerTransfer _targetResourceContainerTransfer;
 
+    [Inject]
+    public void Contruct(ConveyorBeltConfig conveyorBeltConfig)
+    {
+        CurrentMoveSpeed = conveyorBeltConfig.MoveSpeed;
+    }
+    
     public override void Init()
     {
     }

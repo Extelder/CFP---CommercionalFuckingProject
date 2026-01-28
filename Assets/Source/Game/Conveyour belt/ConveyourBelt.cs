@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 public class ConveyourBelt : MonoBehaviour, IConveyourBeltWaypointsContainer
 {
@@ -14,6 +15,8 @@ public class ConveyourBelt : MonoBehaviour, IConveyourBeltWaypointsContainer
 
     [SerializeField] private MonoBehaviour _takeFromResourceContainerTransfer;
     [SerializeField] private MonoBehaviour _giveToResourceContainerTransfer;
+
+    [Inject] private DiContainer _container;
 
     private bool _spawning;
 
@@ -29,12 +32,12 @@ public class ConveyourBelt : MonoBehaviour, IConveyourBeltWaypointsContainer
     public event Action<IResourceContainerTransfer> Spawn;
 
     private ConveyourBeltSpawnHandler _conveyourBeltSpawnHandler;
-
+    
     private void OnEnable()
     {
         _takeContainer.ResourceContainer.Added += OnResourcesAddedFromTakeContainer;
         _conveyourBeltSpawnHandler =
-            new ConveyourBeltSpawnHandler(new ConveyourBeltResourceFactory(_takeContainer.ConveyourResource), this,
+            new ConveyourBeltSpawnHandler(new ConveyourBeltResourceFactory(_takeContainer.ConveyourResource, _container), this,
                 _spawnPoint, this);
     }
 
