@@ -19,14 +19,18 @@ public class GameSceneInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<QueueConfig>().FromInstance(_queueConfig);
-        Container.Bind<UnitConfig>().FromInstance(_unitConfig);
-        Container.BindInterfacesTo<UnitConfig>().FromInstance(_unitConfig);
         Container.Bind<ShopConfig>().FromInstance(_shopConfig);
+        Container.Bind<UnitConfig>().FromInstance(_unitConfig);
         Container.Bind<ConveyorBeltConfig>().FromInstance(_conveyorBeltConfig);
+        
+        Container.BindInterfacesTo<UnitConfig>().FromInstance(_unitConfig);
         Container.BindInterfacesTo<ConveyorBeltConfig>().FromInstance(_conveyorBeltConfig);
+
+
         Container.Bind<AbstractFactory<CustomerUnitProduct>>().To<UnitFactory>()
             .AsSingle()
             .WithArguments(_unitPrefab);
+        
         QueueView view = Container.InstantiatePrefabForComponent<QueueView>(
             _queueViewPrefab,
             _spawnPoint.position,
@@ -36,7 +40,9 @@ public class GameSceneInstaller : MonoInstaller
         Container.Bind<Queue<CustomerUnitProduct>>().To<UnitQueue>().FromNew().AsSingle();
         Container.BindInterfacesAndSelfTo<QueuePurchasableHandler<CustomerUnitProduct>>().FromNew()
             .AsSingle();
+        
         Container.Bind<ShopContainer>().FromInstance(_shopContainer).AsSingle();
-        Container.Bind<Shop>().FromNew().AsSingle();
+        Container.Bind<ShopHandler>().FromNew().AsSingle();
+        Container.Bind<Shop>().FromNew().AsSingle().NonLazy();
     }
 }

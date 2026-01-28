@@ -10,16 +10,16 @@ public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
     [SerializeField] private Animator _animator;
     public event Action Bought;
     public uint NeededRecources { get; set; }
-    private Shop _shop;
+    private ShopHandler _shopHandler;
     private CustomerAnimator _customerAnimator;
     
     private CompositeDisposable _disposable = new CompositeDisposable();
 
     [Inject]
-    public void Construct(UnitConfig config, Shop shop)
+    public void Construct(UnitConfig config, ShopHandler shopHandler)
     {
         NeededRecources = config.NeededRecources;
-        _shop = shop;
+        _shopHandler = shopHandler;
     }
 
     public override void Init()
@@ -30,7 +30,7 @@ public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
 
     public void Buy()
     {
-        if (_shop.TryRemove())
+        if (_shopHandler.TryRemove())
         {
             Bought?.Invoke();
         }

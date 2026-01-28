@@ -6,4 +6,5 @@ using UnityEngine;
 public class ShopConfig : ScriptableObject
 {
     [field: SerializeField] public float BuyCooldown { get; set; }
+    [field: SerializeField] public int RecoursePrice { get; set; }
 }

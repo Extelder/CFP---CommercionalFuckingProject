@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ShopConfig
   m_EditorClassIdentifier: 
   <BuyCooldown>k__BackingField: 3
+  <RecoursePrice>k__BackingField: 5

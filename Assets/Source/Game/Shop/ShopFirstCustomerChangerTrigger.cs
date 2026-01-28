@@ -6,21 +6,20 @@ using Zenject;
 
 public class ShopFirstCustomerChangerTrigger : MonoBehaviour
 {
-    private Shop _shop;
+    private ShopHandler _shopHandler;
     
     [Inject]
-    public void Construct(Shop shop)
+    public void Construct(ShopHandler shop)
     {
-        _shop = shop;
+        _shopHandler = shop;
     }
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<IUnitPurchasable>(out IUnitPurchasable product))
         {
-            _shop.SetFirstUnitInQueue(product);
+            _shopHandler.SetFirstUnitInQueue(product);
         }
-
         if (other.TryGetComponent<IUnitDeathable>(out IUnitDeathable deathable))
         {
             deathable.CanDie = true;
