@@ -1653,12 +1653,12 @@ MonoBehaviour:
   _conveyorBeltConfig: {fileID: 11400000, guid: b118939788ede9242ae1888338ef1cbf,
     type: 2}
   _shopConfig: {fileID: 11400000, guid: 70a5791e27acc2b4caa397b5fbc77129, type: 2}
-  _shopContainer: {fileID: 1826753083}
-  _spawnPoint: {fileID: 2100781959}
   _unitPrefab: {fileID: 1480139557273989666, guid: ee27fd2206d68b8408aedee64c69a03b,
     type: 3}
   _queueViewPrefab: {fileID: 5358153914035625611, guid: cb1ab6f6c350b2c4d880264d421496fe,
     type: 3}
+  _shopContainer: {fileID: 1826753083}
+  _spawnPoint: {fileID: 2100781959}
 --- !u!1 &515301570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,8 +2600,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 865145614956869525, guid: 07241d014fd05b845a732ee3ed2cc72c, type: 3}
   _spawnPoint: {fileID: 682380008}
+  _settingsPrefab: {fileID: 400308577648065807, guid: 153a98cd82773df4ba8d85d5b3c904c6,
+    type: 3}
   _moveConfig: {fileID: 11400000, guid: 0092083b332f795478c2673ddc44444e, type: 2}
   _cutDownConfig: {fileID: 11400000, guid: 491dd6cabc1d4d64eac347506732c783, type: 2}
+  _settingsConfig: {fileID: 11400000, guid: 047d1c4377d03564abe7c957671064f5, type: 2}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

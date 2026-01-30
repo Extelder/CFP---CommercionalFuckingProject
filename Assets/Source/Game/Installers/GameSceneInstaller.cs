@@ -5,17 +5,20 @@ using Zenject;
 
 public class GameSceneInstaller : MonoInstaller
 {
+    [Header("CONFIGS")]
     [SerializeField] private QueueConfig _queueConfig;
     [SerializeField] private UnitConfig _unitConfig;
     [SerializeField] private ConveyorBeltConfig _conveyorBeltConfig;
     [SerializeField] private ShopConfig _shopConfig;
     
-    [SerializeField] private ShopContainer _shopContainer;
-    [SerializeField] private Transform _spawnPoint;
+    [Header("PREFABS")]
     [SerializeField] private GameObject _unitPrefab;
     [SerializeField] private GameObject _queueViewPrefab;
-    
 
+    [Header("ANOTHER")]
+    [SerializeField] private ShopContainer _shopContainer;
+    [SerializeField] private Transform _spawnPoint;
+    
     public override void InstallBindings()
     {
         Container.Bind<QueueConfig>().FromInstance(_queueConfig);
