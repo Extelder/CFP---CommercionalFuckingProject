@@ -51,14 +51,12 @@ public class Wallet
     {
         if (Value + value > maxValue)
         {
-            Debug.Log(Value + "MAX");
             Value = maxValue;
             ValueChanged?.Invoke(Value);
             return;
         }
 
         Value += value;
-        Debug.Log(Value);
         ValueChanged?.Invoke(Value);
     }
 }

@@ -12,6 +12,7 @@ public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
     public uint NeededRecources { get; set; }
     private ShopHandler _shopHandler;
     private CustomerAnimator _customerAnimator;
+    private NavMeshUnitAnimationChangeHandler _navMeshUnitAnimationChangeHandler;
     
     private CompositeDisposable _disposable = new CompositeDisposable();
 
@@ -25,7 +26,8 @@ public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
     public override void Init()
     {
         base.Init();
-        _customerAnimator = new CustomerAnimator(_animator, this, _disposable);
+        _navMeshUnitAnimationChangeHandler = new NavMeshUnitAnimationChangeHandler(container, navMeshUnitMovementHandler, this);
+        _customerAnimator = new CustomerAnimator(_animator, this, _disposable, _navMeshUnitAnimationChangeHandler);
     }
 
     public void Buy()
@@ -40,5 +42,6 @@ public class CustomerUnitProduct : UnitProduct, IUnitPurchasable
     {
         _disposable.Clear();
         _customerAnimator?.Dispose();
+        _navMeshUnitAnimationChangeHandler?.Dispose();
     }
 }

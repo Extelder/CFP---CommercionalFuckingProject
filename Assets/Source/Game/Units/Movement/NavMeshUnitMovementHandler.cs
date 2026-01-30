@@ -25,7 +25,6 @@ public class NavMeshUnitMovementHandler : UnitMovementHandler
             navMeshMovable.NavMeshAgent.SetDestination(value);
             if (navMeshMovable.NavMeshAgent.remainingDistance < navMeshMovable.DistanceToStop)
             {
-                Debug.Log("DESTINATION REACHED");
                 DestinationReached?.Invoke();
             }
         }).AddTo(_disposable);

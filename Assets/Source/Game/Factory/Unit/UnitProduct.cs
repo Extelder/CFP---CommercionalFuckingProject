@@ -15,9 +15,11 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
     [field: SerializeField] public NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] public Transform Transform { get; set; }
 
+    protected DiContainer container;
+
     private Transform _targetPoint;
 
-    private ReactiveProperty<NavMeshUnitMovementHandler> _navMeshUnitMovementHandler =
+    protected ReactiveProperty<NavMeshUnitMovementHandler> navMeshUnitMovementHandler =
         new ReactiveProperty<NavMeshUnitMovementHandler>();
 
     private ReactiveProperty<IUnitKillable> _unitKillable = new ReactiveProperty<IUnitKillable>();
@@ -28,8 +30,9 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
     public void Construct(UnitConfig config, DiContainer container)
     {
         Speed = config.Speed;
+        this.container = container;
         _unitDeathHandler = new UnitDeathHandler(this, _unitKillable);
-        _unitKillHandler = new NavMeshUnitKillHandler(container, _navMeshUnitMovementHandler, this);
+        _unitKillHandler = new NavMeshUnitKillHandler(this.container, navMeshUnitMovementHandler, this);
     }
 
     public override void Init()
@@ -44,8 +47,8 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
 
     private void CreateNewClassExamples(Vector3 targetPoint)
     {
-        _navMeshUnitMovementHandler.Value?.Dispose();
-        _navMeshUnitMovementHandler.Value = new NavMeshUnitMovementHandler(this, this);
+        navMeshUnitMovementHandler.Value?.Dispose();
+        navMeshUnitMovementHandler.Value = new NavMeshUnitMovementHandler(this, this);
         _unitKillable.Value = _unitKillHandler;
         MoveInputDrag?.Invoke(targetPoint);
     }
@@ -56,7 +59,7 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
 
     public void Dispose()
     {
-        _navMeshUnitMovementHandler.Value?.Dispose();
+        navMeshUnitMovementHandler.Value?.Dispose();
         _unitKillHandler?.Dispose();
         _unitDeathHandler?.Dispose();
     }

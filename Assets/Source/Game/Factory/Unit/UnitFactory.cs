@@ -18,7 +18,9 @@ public class UnitFactory : AbstractFactory<CustomerUnitProduct>
 
     public override CustomerUnitProduct CreateProduct(Vector3 spawnPosition)
     {
-        return container.InstantiatePrefabForComponent<CustomerUnitProduct>(prefab,
+        CustomerUnitProduct unitProduct = container.InstantiatePrefabForComponent<CustomerUnitProduct>(prefab,
             spawnPosition, Quaternion.identity, null);
+        unitProduct.Init();
+        return unitProduct;
     }
 }
