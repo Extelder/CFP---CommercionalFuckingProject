@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IUnitKillable : INavMeshActionCallable
+public interface INavMeshActionCallable
 {
+    public event Action ActionCall;
 }

@@ -5,56 +5,22 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-public class NavMeshUnitKillHandler : IUnitKillable, IDisposable
+public class NavMeshUnitKillHandler : NavMeshUnitActionHandler
 {
-    [Inject] private IQueueKillable<CustomerUnitProduct> _customerUnitProductQueue;
-    private UnitProduct _ownProduct;
-    private CompositeDisposable _disposable = new CompositeDisposable();
-    private ReactiveProperty<NavMeshUnitMovementHandler> _navMeshUnitMovementHandler;
-    public NavMeshUnitKillHandler(DiContainer container,
-        ReactiveProperty<NavMeshUnitMovementHandler> navMeshUnitMovementHandler, UnitProduct unitProduct)
+    public NavMeshUnitKillHandler(DiContainer container, ReactiveProperty<NavMeshUnitMovementHandler> navMeshUnitMovementHandler, UnitProduct unitProduct) : base(container, navMeshUnitMovementHandler, unitProduct)
     {
-        _ownProduct = unitProduct;
-        container.Inject(this);
-        _customerUnitProductQueue.UnitCanBeKilled += OnUnitCanBeKilled;
-        _navMeshUnitMovementHandler = navMeshUnitMovementHandler;
+        cooldown = 1;
     }
 
-    private void OnUnitCanBeKilled(UnitProduct firstUnitProduct)
-    {
-        if (firstUnitProduct == _ownProduct)
-        {
-            _navMeshUnitMovementHandler.Subscribe(_ =>
-            {
-                if (_ == null)
-                {
-                    _disposable.Clear();
-                    return;
-                }
+    public override void OnUnitNotRight()
+    {}
 
-                _ownProduct.StartCoroutine(CallWithCooldown(_));
-            }).AddTo(_disposable);
-        }
-    }
-    
-    private void OnDestinationReached()
+    public override void OnDestinationReached()
     {
+        Debug.Log("DESTINATIONREACHED");
         Dispose();
-        UnitKill?.Invoke();
+        ActionCall?.Invoke();
     }
 
-    private IEnumerator CallWithCooldown(NavMeshUnitMovementHandler navMeshUnitMovementHandler)
-    {
-        yield return new WaitForSeconds(1);
-        navMeshUnitMovementHandler.DestinationReached += OnDestinationReached;
-    }
-
-    public event Action UnitKill;
-
-    public void Dispose()
-    {
-        _navMeshUnitMovementHandler.Value.DestinationReached -= OnDestinationReached;
-        _customerUnitProductQueue.UnitCanBeKilled -= OnUnitCanBeKilled;
-        _disposable.Clear();
-    }
+    public override event Action ActionCall;
 }

@@ -7,18 +7,18 @@ using UnityEngine;
 public class CustomerAnimator : UnitAnimator, IMoveUnitAnimatorInput, IDisposable
 {
     private IUnitInput _customerInput;
-    private IAnimationChangable _animationChangable;
+    private INavMeshActionCallable _navMeshActionCallable;
     
-    public CustomerAnimator(Animator animator, IUnitInput customerInput, CompositeDisposable disposable, IAnimationChangable animationChangable) : base(animator)
+    public CustomerAnimator(Animator animator, IUnitInput customerInput, CompositeDisposable disposable, INavMeshActionCallable navMeshActionCallable) : base(animator)
     {
         CustomerUnitMovementAnimatorHandler unitMovementAnimatorHandler = new CustomerUnitMovementAnimatorHandler(this, this, disposable);
         _customerInput = customerInput;
         _customerInput.MoveInputDrag += OnMoveInputDragged;
-        _animationChangable = animationChangable;
-        _animationChangable.AnimationChange += OnAnimationChange;
+        _navMeshActionCallable = navMeshActionCallable;
+        _navMeshActionCallable.ActionCall += OnActionCall;
     }
 
-    private void OnAnimationChange()
+    private void OnActionCall()
     {
         Moving.Value = false;
         Debug.Log("FALSE MOVE");
@@ -34,6 +34,6 @@ public class CustomerAnimator : UnitAnimator, IMoveUnitAnimatorInput, IDisposabl
     public void Dispose()
     {
         _customerInput.MoveInputDrag -= OnMoveInputDragged;
-        _animationChangable.AnimationChange -= OnAnimationChange;
+        _navMeshActionCallable.ActionCall -= OnActionCall;
     }
 }

@@ -22,7 +22,7 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
     protected ReactiveProperty<NavMeshUnitMovementHandler> navMeshUnitMovementHandler =
         new ReactiveProperty<NavMeshUnitMovementHandler>();
 
-    private ReactiveProperty<IUnitKillable> _unitKillable = new ReactiveProperty<IUnitKillable>();
+    private ReactiveProperty<INavMeshActionCallable> _actionCallable = new ReactiveProperty<INavMeshActionCallable>();
     private UnitDeathHandler _unitDeathHandler;
     private NavMeshUnitKillHandler _unitKillHandler;
 
@@ -31,7 +31,7 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
     {
         Speed = config.Speed;
         this.container = container;
-        _unitDeathHandler = new UnitDeathHandler(this, _unitKillable);
+        _unitDeathHandler = new UnitDeathHandler(this, _actionCallable);
         _unitKillHandler = new NavMeshUnitKillHandler(this.container, navMeshUnitMovementHandler, this);
     }
 
@@ -49,7 +49,7 @@ public class UnitProduct : AbstractProduct, INavMeshMovable, IUnitTransformable,
     {
         navMeshUnitMovementHandler.Value?.Dispose();
         navMeshUnitMovementHandler.Value = new NavMeshUnitMovementHandler(this, this);
-        _unitKillable.Value = _unitKillHandler;
+        _actionCallable.Value = _unitKillHandler;
         MoveInputDrag?.Invoke(targetPoint);
     }
 

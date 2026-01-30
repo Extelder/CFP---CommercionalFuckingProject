@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class UnitDeathHandler : IDisposable
 {
-    private IUnitKillable _unitKillable;
+    private INavMeshActionCallable _unitKillable;
     private IUnitDeathable _unitDeathable;
     private CompositeDisposable _disposable = new CompositeDisposable();
     
-    public UnitDeathHandler(IUnitDeathable unitDeathable, ReactiveProperty<IUnitKillable> unitKillable)
+    public UnitDeathHandler(IUnitDeathable unitDeathable, ReactiveProperty<INavMeshActionCallable> actionCallable)
     {
-        unitKillable.Subscribe(_ =>
+        actionCallable.Subscribe(_ =>
         {
             if (_ == null)
             {
@@ -21,18 +21,20 @@ public class UnitDeathHandler : IDisposable
 
             _unitDeathable = unitDeathable;
             _unitKillable = _;
-            _unitKillable.UnitKill += OnUnitKill;
+            _unitKillable.ActionCall += OnUnitKill;
+            Debug.Log("SUBSCRIBE");
         }).AddTo(_disposable);
     }
 
     private void OnUnitKill()
     {
+        Debug.Log("SUBSCRIBED");
         _unitDeathable.Death();
     }
 
     public void Dispose()
     {
-        _unitKillable.UnitKill -= OnUnitKill;
+        _unitKillable.ActionCall -= OnUnitKill;
         _disposable.Clear();
     }
 }

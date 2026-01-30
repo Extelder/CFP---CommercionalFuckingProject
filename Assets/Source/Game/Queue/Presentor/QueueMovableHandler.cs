@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QueueMovableHandler<T> : QueueHandler<T>, IQueueKillable<T> where T : UnitProduct
+public class QueueMovableHandler<T> : QueueHandler<T>, IQueueActionCallable<T> where T : UnitProduct
 {
     public QueueMovableHandler(Queue<T> queue, IQueueContainable queueContainable, AbstractFactory<T> factory,
         QueueConfig config) : base(queue, queueContainable, factory, config)
@@ -22,7 +22,7 @@ public class QueueMovableHandler<T> : QueueHandler<T>, IQueueKillable<T> where T
     public override void AddBeforeRemove()
     {
         currentFirstUnitInQueue.Move(queueContainable.TargetPoint.position);
-        UnitCanBeKilled?.Invoke(currentFirstUnitInQueue);
+        UnitActionCallable?.Invoke(currentFirstUnitInQueue);
     }
 
     public override void AddAfterRemove()
@@ -30,5 +30,5 @@ public class QueueMovableHandler<T> : QueueHandler<T>, IQueueKillable<T> where T
         Move();
     }
 
-    public Action<T> UnitCanBeKilled { get; set; }
+    public Action<T> UnitActionCallable { get; set; }
 }
