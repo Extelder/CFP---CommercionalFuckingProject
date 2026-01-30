@@ -35,6 +35,7 @@ public class PlayerInstaller : MonoInstaller
 
         SettingsView settingsView = Container.InstantiatePrefabForComponent<SettingsView>(_settingsPrefab);
         Container.BindInterfacesAndSelfTo<SettingsView>().FromInstance(settingsView).AsSingle();
+        Container.BindInterfacesAndSelfTo<SettingsChangerInput>().FromNew().AsSingle();
         Container.BindInterfacesAndSelfTo<SettingsInput>().FromNew().AsSingle();
         Container.BindInterfacesAndSelfTo<SettingsHandler>().FromNew().AsSingle();
     }
