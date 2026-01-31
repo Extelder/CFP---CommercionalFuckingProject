@@ -11,11 +11,9 @@ public class SensititvityChangeUIContainer : SettingsChangeUIContainer<float>
     public SensititvityChangeUIContainer(ISettingsViewable viewable, DiContainer container) : base(viewable, container)
     
     {
-        Debug.Log("INSTANTIATE");
         Slider slider = this.container.InstantiatePrefabForComponent<Slider>(
             this.viewable.SettingsDefaultUIConfig.DefaultSliderPrefab, parentOrigin.position, Quaternion.identity,
             parentOrigin);
-        Debug.Log("INSTANTIATED");
         slider.onValueChanged.AddListener(OnValueChanged);
     }
 

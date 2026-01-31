@@ -14,9 +14,7 @@ public class Settings : IDisposable
         for (int i = 0; i < _config.SettingsChangeContainers.Length; i++)
         {
             _config.SettingsChangeContainers[i].Inject(container);
-            Debug.Log("INJECTED");
             _config.SettingsChangeContainers[i].Initialize();
-            Debug.Log("INIT");
         }
     }
 

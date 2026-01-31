@@ -14,10 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PressKey>k__BackingField: 27
   <SettingsChangeContainers>k__BackingField:
-  - rid: 4662486369567768576
+  - rid: 4662486369567768577
+  - rid: 4662486369567768578
+  - rid: 4662486369567768579
   references:
     version: 2
     RefIds:
-    - rid: 4662486369567768576
-      type: {class: SensitivityChangeContainer, ns: , asm: Assembly-CSharp}
-      data: 
+    - rid: 4662486369567768577
+      type: {class: VolumeChangeContainer, ns: , asm: Assembly-CSharp}
+      data:
+        <Name>k__BackingField: Master
+        <Mixer>k__BackingField: {fileID: 24100000, guid: 373e4b25f79f8f14abd50a4434a0e6c6,
+          type: 2}
+    - rid: 4662486369567768578
+      type: {class: VolumeChangeContainer, ns: , asm: Assembly-CSharp}
+      data:
+        <Name>k__BackingField: Music
+        <Mixer>k__BackingField: {fileID: 24100000, guid: 373e4b25f79f8f14abd50a4434a0e6c6,
+          type: 2}
+    - rid: 4662486369567768579
+      type: {class: VolumeChangeContainer, ns: , asm: Assembly-CSharp}
+      data:
+        <Name>k__BackingField: Effects
+        <Mixer>k__BackingField: {fileID: 24100000, guid: 373e4b25f79f8f14abd50a4434a0e6c6,
+          type: 2}
