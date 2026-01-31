@@ -4,15 +4,13 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class SettingsChangerInput : ISettingsChangerInput<float>, IDisposable
+public class SliderChangerInput : ISettingsChangerInput<float>, IDisposable
 {
     private CompositeDisposable _disposable = new CompositeDisposable();
     
-    public SettingsChangerInput()
+    public SliderChangerInput()
     {
         CheckOnInput();
-        SensitivityChanger sensitivityChanger = new SensitivityChanger();
-        SensitivityValueChanger sensitivityValueChanger = new SensitivityValueChanger(this, sensitivityChanger);
     }
 
     private void CheckOnInput()
@@ -21,8 +19,7 @@ public class SettingsChangerInput : ISettingsChangerInput<float>, IDisposable
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                Debug.Log("CLICKED");
-                ValueChanged?.Invoke(10);   
+                ValueChanged?.Invoke(10);
             }
         }).AddTo(_disposable);
     }

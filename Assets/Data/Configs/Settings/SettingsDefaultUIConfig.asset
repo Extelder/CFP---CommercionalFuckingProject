@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ae89f2c289c7b4e9af1fb51d525931, type: 3}
+  m_Name: SettingsDefaultUIConfig
+  m_EditorClassIdentifier: 
+  DefaultBoolPrefab: {fileID: 0}
+  DefaultSliderPrefab: {fileID: 3695256999136749308, guid: 62c8248b6ecfc924199be6c987543b5c,
+    type: 3}

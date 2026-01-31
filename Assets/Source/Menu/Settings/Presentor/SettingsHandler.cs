@@ -13,12 +13,10 @@ public class SettingsHandler : IDisposable
         _settingsViewable = viewable;
         _keyInput = keyInput;
         _keyInput.KeyPressed += OnKeyPressed;
-        Debug.Log("SUBSCRIBEEE");
     }
 
     private void OnKeyPressed()
     {
-        Debug.Log("KEY PRESSED");
         _settingsViewable.SettingsCanvas.enabled = !_settingsViewable.SettingsCanvas.enabled;
     }
 

@@ -13,3 +13,11 @@ MonoBehaviour:
   m_Name: SettingsConfig
   m_EditorClassIdentifier: 
   <PressKey>k__BackingField: 27
+  <SettingsChangeContainers>k__BackingField:
+  - rid: 4662486369567768576
+  references:
+    version: 2
+    RefIds:
+    - rid: 4662486369567768576
+      type: {class: SensitivityChangeContainer, ns: , asm: Assembly-CSharp}
+      data: 

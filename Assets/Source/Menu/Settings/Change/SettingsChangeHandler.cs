@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SettingsChanger<T> : IDisposable
+public abstract class SettingsChangeHandler<T> : IDisposable
 {
     private ISettingsChangerInput<T> _settingsChangerInput;
-    public SettingsChanger(ISettingsChangerInput<T> settingsChangerInput)
+    public SettingsChangeHandler(ISettingsChangerInput<T> settingsChangerInput)
     {
         _settingsChangerInput = settingsChangerInput;
         _settingsChangerInput.ValueChanged += OnValueChanged;

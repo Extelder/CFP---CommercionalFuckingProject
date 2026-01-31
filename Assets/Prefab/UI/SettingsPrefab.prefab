@@ -45,7 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39b613795bf1b84e9aab778db2404bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SettingsDefaultUIConfig>k__BackingField: {fileID: 11400000, guid: f275bd0f781a00045a9210ffacbcb72f,
+    type: 2}
   <SettingsCanvas>k__BackingField: {fileID: 5796529947140489396}
+  <ParentOrigin>k__BackingField: {fileID: 4415938850440243646}
 --- !u!1 &600849904224806410
 GameObject:
   m_ObjectHideFlags: 0

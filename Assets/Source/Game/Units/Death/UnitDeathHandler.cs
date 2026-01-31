@@ -22,13 +22,11 @@ public class UnitDeathHandler : IDisposable
             _unitDeathable = unitDeathable;
             _unitKillable = _;
             _unitKillable.ActionCall += OnUnitKill;
-            Debug.Log("SUBSCRIBE");
         }).AddTo(_disposable);
     }
 
     private void OnUnitKill()
     {
-        Debug.Log("SUBSCRIBED");
         _unitDeathable.Death();
     }
 
